@@ -1,63 +1,120 @@
-const $ = id => document.getElementById(id);
 
-let priceChart;
-let heroChart;
+const $ = (id) => document.getElementById(id);
 
-const format = n =>
-  Number(n).toLocaleString("vi-VN", {
+const CSV_PATH = "./data/abc-27.csv";
+const VIDEO_PATH = "./videos/stock_simulation_2min.mp4";
+
+let heroChart = null;
+let priceChart = null;
+
+const format = (value) =>
+  Number(value).toLocaleString("vi-VN", {
     maximumFractionDigits: 2
   });
 
-// VẼ BIỂU ĐỒ
+function setStatus(message) {
+  const element = $("status");
+  if (element) element.textContent = message;
+}
+
+function setHeroMessage(message) {
+  const element = $("heroMessage");
+  if (!element) return;
+
+  element.textContent = message;
+  element.hidden = !message;
+}
+
+
 function renderChart(id, labels, values, isHero = false) {
-  if (!window.Chart) {
-    console.error("Chưa tải được Chart.js");
+  if (typeof Chart === "undefined") {
+    console.error("Không tải được Chart.js");
     return null;
   }
 
-  const ctx = $(id).getContext("2d");
+  const canvas = $(id);
 
-  return new Chart(ctx, {
+  if (!canvas) {
+    console.error("Không tìm thấy canvas:", id);
+    return null;
+  }
+
+  const existing = Chart.getChart(canvas);
+
+  if (existing) {
+    existing.destroy();
+  }
+
+  return new Chart(canvas, {
     type: "line",
+
     data: {
       labels: labels,
+
       datasets: [{
-        label: "Giá đóng cửa",
+        label: "Giá đóng cửa ABC-27",
         data: values,
-        borderColor: isHero ? "#6778ef" : "#32bd9c",
+
+        borderColor: isHero
+          ? "#6778ef"
+          : "#32bd9c",
+
         backgroundColor: isHero
-          ? "rgba(103,120,239,.12)"
-          : "rgba(50,189,156,.1)",
+          ? "rgba(103,120,239,0.12)"
+          : "rgba(50,189,156,0.10)",
+
         fill: true,
         tension: 0.32,
         pointRadius: 0,
+        pointHoverRadius: 5,
         borderWidth: 3
       }]
     },
+
     options: {
       responsive: true,
       maintainAspectRatio: false,
+
+      interaction: {
+        intersect: false,
+        mode: "index"
+      },
+
       plugins: {
-        legend: { display: false },
+        legend: {
+          display: false
+        },
+
         tooltip: {
           callbacks: {
-            label: context => "Giá: " + format(context.parsed.y)
+            label: (context) =>
+              "Giá: " +
+              format(context.parsed.y) +
+              " VND"
           }
         }
       },
+
       scales: {
         x: {
-          grid: { display: false },
+          grid: {
+            display: false
+          },
+
           ticks: {
             maxTicksLimit: 7,
             color: "#9ca4b5"
           }
         },
+
         y: {
-          grid: { color: "#eef0f6" },
+          grid: {
+            color: "#eef0f6"
+          },
+
           ticks: {
             color: "#9ca4b5",
-            callback: value => format(value)
+            callback: (value) => format(value)
           }
         }
       }
@@ -66,56 +123,104 @@ function renderChart(id, labels, values, isHero = false) {
 }
 
 function showCharts(labels, values) {
-  if (priceChart) priceChart.destroy();
-  if (heroChart) heroChart.destroy();
+  heroChart = renderChart(
+    "heroChart",
+    labels,
+    values,
+    true
+  );
 
-  priceChart = renderChart("priceChart", labels, values);
-  heroChart = renderChart("heroChart", labels, values, true);
+  priceChart = renderChart(
+    "priceChart",
+    labels,
+    values,
+    false
+  );
+
+  if (heroChart) {
+    setHeroMessage("");
+  } else {
+    setHeroMessage(
+      "Không thể vẽ biểu đồ. Hãy kiểm tra Chart.js."
+    );
+  }
+
+  return Boolean(heroChart && priceChart);
 }
 
-// DỮ LIỆU MINH HỌA, KHÔNG PHẢI ABC-27 THẬT
-const demo = [
-  10, 11, 10.5, 12, 11.8,
-  13.5, 13, 14.2, 12.5, 13.4,
-  15, 14, 15.8, 14.9, 16.7,
-  16, 17.3, 16.8, 18.4, 17.7
-];
+/* ==========================================
+   2. DOC FILE CSV GOC
+========================================== */
 
-window.addEventListener("load", () => {
-  showCharts(
-    demo.map((_, i) => "Mốc " + (i + 1)),
-    demo
-  );
-});
-
-// ĐỌC FILE CSV
 function parseCSV(text) {
   const lines = text
     .replace(/^\uFEFF/, "")
     .trim()
     .split(/\r?\n/)
-    .filter(Boolean);
+    .filter((line) => line.trim() !== "");
 
-  return lines.map((line, index) => {
+  if (!lines.length) {
+    throw new Error("File CSV trống.");
+  }
+
+  const rows = [];
+
+  lines.forEach((line, index) => {
     const cols = line
       .split(/[;,\t]/)
-      .map(s => s.trim().replace(/^"|"$/g, ""));
+      .map((value) =>
+        value.trim().replace(/^"|"$/g, "")
+      );
+
+    // Bỏ qua dòng tiêu đề nếu có
+    if (
+      index === 0 &&
+      cols.some((value) =>
+        value === "" ||
+        !Number.isFinite(Number(value))
+      )
+    ) {
+      return;
+    }
 
     if (cols.length !== 7) {
-      throw Error(`Dòng ${index + 1} phải có đúng 7 cột`);
+      throw new Error(
+        "Dòng " + (index + 1) +
+        " phải có đúng 7 cột."
+      );
     }
 
-    const nums = cols.map(s => Number(s));
+    const numbers = cols.map((value) =>
+      value === "" ? NaN : Number(value)
+    );
 
-    if (nums.some(n => !Number.isFinite(n))) {
-      throw Error(`Dòng ${index + 1} chứa dữ liệu không hợp lệ`);
+    if (
+      numbers.some((value) =>
+        !Number.isFinite(value)
+      )
+    ) {
+      throw new Error(
+        "Dữ liệu không hợp lệ tại dòng " +
+        (index + 1)
+      );
     }
 
-    return nums;
+    rows.push(numbers);
   });
+
+  if (!rows.length) {
+    throw new Error(
+      "Không có dữ liệu số trong CSV."
+    );
+  }
+
+  return rows;
 }
 
-// GOM 5 NGÀY THÀNH 1 NẾN
+/* ==========================================
+   3. GOM 5 NGAY THANH 1 NEN
+========================================== */
+
 function processRows(rows) {
   const candles = [];
 
@@ -130,70 +235,224 @@ function processRows(rows) {
     const high = Math.max(...allPrices);
     const low = Math.min(...allPrices);
 
-    const ref = i > 0 ? rows[i - 1][6] : open;
+    const ref = i > 0
+      ? rows[i - 1][6]
+      : open;
 
     candles.push({
-      open, close, high, low, ref
+      open,
+      close,
+      high,
+      low,
+      ref
     });
   }
 
   return candles;
 }
 
-// XỬ LÝ KHI NGƯỜI DÙNG CHỌN CSV
-$("csvInput").addEventListener("change", async event => {
-  const file = event.target.files[0];
-  if (!file) return;
+/* ==========================================
+   4. CAP NHAT DASHBOARD
+========================================== */
+
+function updateDashboard(rows, sourceName) {
+  if (!rows.length) {
+    throw new Error("Không có dữ liệu.");
+  }
+
+  const candles = processRows(rows);
+
+  const highest = Math.max(
+    ...candles.map((candle) => candle.high)
+  );
+
+  const lowest = Math.min(
+    ...candles.map((candle) => candle.low)
+  );
+
+  const rise = candles.filter(
+    (candle) => candle.close > candle.ref
+  ).length;
+
+  const fall = candles.filter(
+    (candle) => candle.close < candle.ref
+  ).length;
+
+  const labels = candles.map(
+    (_, index) => "Nến " + (index + 1)
+  );
+
+  const values = candles.map(
+    (candle) => candle.close
+  );
+
+  const stats = {
+    days: rows.length,
+    candles: candles.length,
+    highest: format(highest),
+    lowest: format(lowest),
+    rise: rise,
+    fall: fall
+  };
+
+  Object.entries(stats).forEach(([id, value]) => {
+    const element = $(id);
+
+    if (element) {
+      element.textContent = value;
+    }
+  });
+
+  const rendered = showCharts(labels, values);
+
+  if (rendered) {
+    setStatus(
+      "Đã tải thành công " +
+      rows.length + " ngày và " +
+      candles.length + " nến từ " +
+      sourceName + "."
+    );
+  } else {
+    setStatus(
+      "Đã đọc CSV nhưng không vẽ được biểu đồ. " +
+      "Hãy kiểm tra Chart.js."
+    );
+  }
+
+  console.log("Thống kê ABC-27:", {
+    days: rows.length,
+    candles: candles.length,
+    highest,
+    lowest,
+    rise,
+    fall
+  });
+}
+
+/* ==========================================
+   5. TU DONG TAI CSV GOC
+========================================== */
+
+async function autoLoadCSV() {
+  setStatus("Đang tải dữ liệu ABC-27 gốc...");
+  setHeroMessage("Đang tải dữ liệu ABC-27...");
 
   try {
-    const rows = parseCSV(await file.text());
+    const response = await fetch(CSV_PATH, {
+      cache: "no-cache"
+    });
 
-    if (!rows.length) {
-      throw Error("File CSV trống");
+    if (!response.ok) {
+      throw new Error(
+        "HTTP " + response.status +
+        " - Không tìm thấy " + CSV_PATH
+      );
     }
 
-    const candles = processRows(rows);
+    const text = await response.text();
+    const rows = parseCSV(text);
 
-    const high = Math.max(...candles.map(c => c.high));
-    const low = Math.min(...candles.map(c => c.low));
-
-    const rise = candles.filter(c => c.close > c.ref).length;
-    const fall = candles.filter(c => c.close < c.ref).length;
-
-    $("days").textContent = rows.length;
-    $("candles").textContent = candles.length;
-    $("highest").textContent = format(high);
-    $("lowest").textContent = format(low);
-    $("rise").textContent = rise;
-    $("fall").textContent = fall;
-
-    const labels = candles.map((_, i) => "Nến " + (i + 1));
-    const values = candles.map(c => c.close);
-
-    showCharts(labels, values);
-
-    $("status").textContent =
-      `Đã đọc ${rows.length} ngày và ${candles.length} nến từ ${file.name}.`;
+    updateDashboard(rows, "abc-27.csv");
 
   } catch (error) {
-    $("status").textContent =
-      "Không thể đọc CSV: " + error.message;
+    console.error("Lỗi tải CSV:", error);
+
+    setStatus(
+      "Chưa thể tải dữ liệu ABC-27: " +
+      error.message +
+      ". Hãy kiểm tra file CSV hoặc chọn CSV từ máy."
+    );
+
+    setHeroMessage(
+      "Chưa tải được dữ liệu ABC-27 gốc"
+    );
   }
-});
+}
 
-// CHỌN VIDEO MP4
-let currentVideoUrl;
+/* ==========================================
+   6. CHON CSV THU CONG
+========================================== */
 
-$("videoInput").addEventListener("change", event => {
-  const file = event.target.files[0];
-  if (!file) return;
+function setupCSVInput() {
+  const input = $("csvInput");
 
-  if (currentVideoUrl) {
-    URL.revokeObjectURL(currentVideoUrl);
-  }
+  if (!input) return;
 
-  currentVideoUrl = URL.createObjectURL(file);
+  input.addEventListener("change", async (event) => {
+    const file = event.target.files[0];
 
-  $("stockVideo").src = currentVideoUrl;
-  $("stockVideo").load();
-});
+    if (!file) return;
+
+    try {
+      const text = await file.text();
+      const rows = parseCSV(text);
+
+      updateDashboard(rows, file.name);
+
+    } catch (error) {
+      console.error("Lỗi đọc CSV:", error);
+
+      setStatus(
+        "Không thể đọc CSV: " + error.message
+      );
+    }
+  });
+}
+
+/* ==========================================
+   7. VIDEO PYTHON
+========================================== */
+
+function setupVideo() {
+  const video = $("stockVideo");
+  const status = $("videoStatus");
+
+  if (!video) return;
+
+  video.addEventListener("loadedmetadata", () => {
+    if (status) {
+      status.textContent =
+        "Video đã tải thành công. Nhấn Play để xem.";
+    }
+  });
+
+  video.addEventListener("error", () => {
+    console.error(
+      "Không tải được video:",
+      VIDEO_PATH
+    );
+
+    if (status) {
+      status.textContent =
+        "Không thể tải video. " +
+        "Hãy kiểm tra thư mục videos.";
+    }
+  });
+
+  video.src = VIDEO_PATH;
+  video.preload = "metadata";
+  video.load();
+}
+
+/* ==========================================
+   8. KHOI DONG WEBSITE
+========================================== */
+
+function startWebsite() {
+  console.log("FinSight AI đang khởi động...");
+
+  setupCSVInput();
+  setupVideo();
+
+  // Chỉ tải dữ liệu gốc, không vẽ dữ liệu giả
+  autoLoadCSV();
+}
+
+if (document.readyState === "loading") {
+  document.addEventListener(
+    "DOMContentLoaded",
+    startWebsite
+  );
+} else {
+  startWebsite();
+}
