@@ -1,56 +1,90 @@
+
 <!DOCTYPE html>
 <html lang="vi">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="FinSight AI - Phân tích dữ liệu chứng khoán ABC-27">
   <title>FinSight AI | Chứng khoán ABC-27</title>
+
   <link rel="stylesheet" href="style.css">
-  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js" defer></script>
+
+  <script
+    src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"
+    defer>
+  </script>
   <script src="script.js" defer></script>
 </head>
-<body>
 
-  <!-- THANH ĐIỀU HƯỚNG -->
+<body>
   <header class="header wrap">
     <a class="logo" href="#home">◈ FinSight <b>AI</b></a>
+
     <nav>
       <a href="#home">Trang chủ</a>
       <a href="#dashboard">Bảng điều khiển</a>
       <a href="#features">Tính năng</a>
       <a href="#video">Video mô phỏng</a>
     </nav>
-    <a class="btn btn-dark" href="#dashboard">Khám phá ngay ↗</a>
+
+    <a class="btn btn-dark" href="#dashboard">
+      Khám phá ngay ↗
+    </a>
   </header>
 
   <main>
-
     <!-- TRANG CHỦ -->
     <section class="hero wrap" id="home">
       <div class="hero-copy">
-        <span class="eyebrow">✦ PHÂN TÍCH CHỨNG KHOÁN BẰNG PYTHON</span>
-        <h1>Thấu hiểu thị trường.<br>
+        <span class="eyebrow">
+          ✦ PHÂN TÍCH CHỨNG KHOÁN BẰNG PYTHON
+        </span>
+
+        <h1>
+          Thấu hiểu thị trường.<br>
           <em>Qua từng biến động.</em>
         </h1>
+
         <p>
           Khám phá dữ liệu chứng khoán ABC-27 thông qua Python,
           biểu đồ nến Nhật và video mô phỏng 120 giây.
           Trực quan hóa 365 ngày thành 73 nến theo nhóm 5 ngày.
         </p>
+
         <div class="actions">
-          <a class="btn btn-dark" href="#dashboard">Khám phá Dashboard →</a>
-          <a class="btn btn-outline" href="#video">▷ Xem video</a>
+          <a class="btn btn-dark" href="#dashboard">
+            Khám phá Dashboard →
+          </a>
+          <a class="btn btn-outline" href="#video">
+            ▷ Xem video
+          </a>
         </div>
       </div>
 
       <div class="hero-visual">
         <div class="orb orb-one"></div>
         <div class="orb orb-two"></div>
+
         <div class="hero-chart">
-          <div class="chart-caption">ABC-27 · TỔNG QUAN BIẾN ĐỘNG</div>
-          <canvas id="heroChart"></canvas>
+          <div class="chart-caption">
+            ABC-27 · TỔNG QUAN BIẾN ĐỘNG
+          </div>
+
+          <div class="hero-canvas-wrap">
+            <canvas id="heroChart"></canvas>
+          </div>
+
+          <p class="chart-placeholder" id="heroMessage">
+            Đang tải biểu đồ...
+          </p>
         </div>
-        <span class="float-pill pill-one">↗ Phân tích dữ liệu</span>
-        <span class="float-pill pill-two">73 nến Nhật</span>
+
+        <span class="float-pill pill-one">
+          ↗ Phân tích dữ liệu
+        </span>
+        <span class="float-pill pill-two">
+          73 nến Nhật
+        </span>
       </div>
     </section>
 
@@ -81,14 +115,20 @@
     <!-- DASHBOARD -->
     <section class="overview wrap" id="dashboard">
       <div class="overview-copy">
-        <span class="eyebrow">TRỰC QUAN HÓA THÔNG MINH</span>
-        <h2>Phân tích dữ liệu.<br>
+        <span class="eyebrow">
+          TRỰC QUAN HÓA THÔNG MINH
+        </span>
+
+        <h2>
+          Phân tích dữ liệu.<br>
           <em>Trực quan và rõ ràng.</em>
         </h2>
+
         <p>
           Theo dõi diễn biến giá chứng khoán ABC-27
           bằng biểu đồ và các chỉ số thống kê.
         </p>
+
         <ul>
           <li>✓ Biểu đồ giá chứng khoán</li>
           <li>✓ Giá cao nhất và thấp nhất</li>
@@ -98,16 +138,23 @@
 
         <label class="btn btn-blue upload">
           ↑ Chọn file abc-27.csv
-          <input id="csvInput" type="file" accept=".csv" hidden>
+          <input
+            id="csvInput"
+            type="file"
+            accept=".csv,text/csv"
+            hidden
+          >
         </label>
+
         <p class="hint" id="status">
-          Đang hiển thị dữ liệu minh họa. Hãy tải CSV để xem dữ liệu thật.
+          Đang khởi động Dashboard...
         </p>
       </div>
 
       <div class="dashboard">
         <div class="dash-top">
-          <div class="dash-brand">◈ FinSight AI
+          <div class="dash-brand">
+            ◈ FinSight AI
             <span>/ Tổng quan thị trường</span>
           </div>
           <span class="live-dot">● ABC-27</span>
@@ -116,12 +163,12 @@
         <div class="stats">
           <div class="stat">
             <small>Số ngày</small>
-            <strong id="days">365</strong>
+            <strong id="days">—</strong>
             <span>Phiên dữ liệu</span>
           </div>
           <div class="stat">
             <small>Số nến</small>
-            <strong id="candles">73</strong>
+            <strong id="candles">—</strong>
             <span>Nhóm 5 ngày</span>
           </div>
           <div class="stat">
@@ -144,6 +191,7 @@
             </div>
             <span class="chart-tag">OHLC</span>
           </div>
+
           <div class="main-chart">
             <canvas id="priceChart"></canvas>
           </div>
@@ -169,10 +217,8 @@
     <!-- TÍNH NĂNG -->
     <section class="features wrap" id="features">
       <div class="section-head">
-        <div>
-          <span class="eyebrow">CÁC TÍNH NĂNG</span>
-          <h2>Tất cả trong một nền tảng.</h2>
-        </div>
+        <span class="eyebrow">CÁC TÍNH NĂNG</span>
+        <h2>Tất cả trong một nền tảng.</h2>
       </div>
 
       <div class="feature-grid">
@@ -180,8 +226,8 @@
           <span class="feature-icon">◈</span>
           <h3>Phân tích dữ liệu</h3>
           <p>
-            Xử lý dữ liệu CSV bằng Python, tính toán
-            giá mở cửa, đóng cửa, cao nhất và thấp nhất.
+            Xử lý dữ liệu CSV, tổng hợp các nhóm 5 ngày
+            và phân tích diễn biến giá chứng khoán.
           </p>
           <div class="mini-bars">
             <i></i><i></i><i></i><i></i>
@@ -194,8 +240,8 @@
           <span class="feature-icon">⌁</span>
           <h3>Biểu đồ tương tác</h3>
           <p>
-            Quan sát biến động giá theo từng nến
-            và xem thông tin trực tiếp trên biểu đồ.
+            Quan sát giá đóng cửa của từng nến
+            và xem giá trị trực tiếp trên biểu đồ.
           </p>
           <div class="mini-line">⌁⌁⌁↗</div>
         </article>
@@ -204,10 +250,12 @@
           <span class="feature-icon">▷</span>
           <h3>Video mô phỏng</h3>
           <p>
-            Mô phỏng biến động chứng khoán ABC-27
-            trong 120 giây bằng Matplotlib.
+            Xem video mô phỏng 120 giây được
+            tạo bằng Python và Matplotlib.
           </p>
-          <a class="text-link" href="#video">Xem mô phỏng →</a>
+          <a class="text-link" href="#video">
+            Xem mô phỏng →
+          </a>
         </article>
       </div>
     </section>
@@ -215,34 +263,50 @@
     <!-- VIDEO PYTHON -->
     <section class="video-section wrap" id="video">
       <div class="section-head">
-        <div>
-          <span class="eyebrow">VIDEO MÔ PHỎNG</span>
-          <h2>Quan sát thị trường chuyển động.</h2>
-        </div>
+        <span class="eyebrow">VIDEO MÔ PHỎNG</span>
+        <h2>Quan sát thị trường chuyển động.</h2>
       </div>
 
       <div class="video-layout">
         <div class="video-frame">
-          <video id="stockVideo" controls preload="metadata" playsinline>
-            <source src="videos/stock_simulation_2min.mp4" type="video/mp4">
-            Trình duyệt không hỗ trợ video.
+          <video
+            id="stockVideo"
+            controls
+            preload="metadata"
+            playsinline
+          >
+            <source
+              src="videos/stock_simulation_2min.mp4"
+              type="video/mp4"
+            >
+            Trình duyệt không hỗ trợ video MP4.
           </video>
         </div>
 
         <div class="video-info">
           <h3>Mô phỏng chứng khoán ABC-27</h3>
           <p>
-            Video được tạo bằng Python với Matplotlib
-            và FuncAnimation, thể hiện 73 nến Nhật
+            Video tạo bằng Python, Matplotlib và
+            FuncAnimation, thể hiện 73 nến Nhật
             cùng diễn biến giá chứng khoán.
           </p>
-          <label class="btn btn-blue upload">
-            Chọn video MP4 từ máy
-            <input id="videoInput" type="file" accept="video/mp4" hidden>
-          </label>
-          <p class="hint">
-            Đặt video vào thư mục videos hoặc chọn file từ máy.
+
+          <p><strong>Thời lượng:</strong> 120 giây</p>
+          <p><strong>Dữ liệu:</strong> 365 ngày giao dịch</p>
+          <p><strong>Phương pháp:</strong> Nến Nhật OHLC</p>
+
+          <p class="hint" id="videoStatus">
+            Đang kiểm tra video...
           </p>
+
+          <a
+            class="btn btn-blue"
+            href="videos/stock_simulation_2min.mp4"
+            target="_blank"
+            rel="noopener"
+          >
+            ↗ Mở video trong tab mới
+          </a>
         </div>
       </div>
     </section>
@@ -252,18 +316,23 @@
       <div>
         <span class="eyebrow">DỰ ÁN KHOA HỌC DỮ LIỆU</span>
         <h2>Biến dữ liệu thành góc nhìn.</h2>
-        <p>Khám phá chứng khoán bằng Python và trực quan hóa dữ liệu.</p>
-        <a class="btn btn-blue" href="#dashboard">Khám phá Dashboard →</a>
+        <p>
+          Khám phá chứng khoán bằng Python
+          và trực quan hóa dữ liệu.
+        </p>
+        <a class="btn btn-blue" href="#dashboard">
+          Khám phá Dashboard →
+        </a>
       </div>
       <div class="cta-orb"></div>
     </section>
   </main>
 
+  <!-- FOOTER -->
   <footer class="footer wrap">
     <b>◈ FinSight AI</b>
     <span>Dự án phân tích chứng khoán ABC-27 bằng Python</span>
     <a href="#home">Về đầu trang ↑</a>
   </footer>
-
 </body>
 </html>
