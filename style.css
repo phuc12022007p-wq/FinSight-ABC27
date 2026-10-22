@@ -1,6 +1,6 @@
 
 /* ==========================================
-   FINSIGHT AI - STYLE.CSS
+   GOC NHIN DU LIEU - STYLE.CSS
 ========================================== */
 
 :root {
@@ -857,4 +857,132 @@ input {
   .dash-bottom small {
     font-size: 10px;
   }
+}
+/* =====================================================
+   GOC NHIN DU LIEU - CAC PHAN MOI
+   Feature links, Ket luan, Loi cam on, Tac gia
+===================================================== */
+html { scroll-padding-top: 30px; }
+
+/* The tinh nang bam duoc */
+.feature-clickable {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+  transition: transform .25s ease, box-shadow .25s ease;
+}
+.feature-clickable:hover { transform: translateY(-6px); box-shadow: 0 12px 30px rgba(40,50,100,.12); }
+.feature-clickable:focus-visible { outline: 3px solid #5361e8; outline-offset: 4px; }
+.feature-clickable h3 { color: inherit; }
+.feature-action { display: inline-block; margin-top: 20px; color: var(--blue); font-weight: 700; font-size: 14px; }
+
+/* Ket luan va loi cam on */
+.academic-ending { padding-top: 55px; padding-bottom: 80px; }
+.academic-ending-panel {
+  padding: 70px 65px;
+  background: linear-gradient(145deg,#fff 0%,#f8f9ff 65%,#f0f2ff 100%);
+  border: 1px solid #e2e6f5;
+  border-radius: 30px;
+  box-shadow: 0 12px 45px rgba(35,45,90,.04);
+}
+.academic-ending-header { max-width: 800px; margin: 0 auto; text-align: center; }
+.academic-ending-icon, .author-icon {
+  width: 76px; height: 76px; padding: 17px;
+  margin: 0 auto 24px; border-radius: 50%;
+  background: #e9edff; color: #5361e8;
+}
+.academic-ending-icon svg, .author-icon svg { width: 100%; height: 100%; }
+.academic-ending-eyebrow, .author-eyebrow {
+  display: block; color: #5361e8; font-size: 12px;
+  font-weight: 800; letter-spacing: 2px;
+}
+.academic-ending-header h2 {
+  margin: 20px 0 22px; font-size: clamp(30px,4vw,52px);
+  line-height: 1.2; letter-spacing: -1px; color: #1c2340;
+}
+.academic-ending-header h2 em { font-style: normal; color: #5361e8; }
+.academic-ending-intro { max-width: 680px; margin: 0 auto; font-size: 17px; line-height: 1.85; color: #68738d; }
+.academic-ending-stats {
+  display: grid; grid-template-columns: repeat(3,minmax(0,1fr));
+  gap: 18px; max-width: 760px; margin: 45px auto 55px;
+}
+.academic-ending-stat {
+  padding: 25px 15px; text-align: center; background: #fff;
+  border: 1px solid #e5e9f7; border-radius: 18px;
+  transition: transform .25s ease, box-shadow .25s ease;
+}
+.academic-ending-stat:hover { transform: translateY(-4px); box-shadow: 0 10px 24px rgba(50,65,140,.09); }
+.academic-ending-stat strong { display: block; font-size: clamp(27px,3vw,38px); font-weight: 800; color: #5361e8; }
+.academic-ending-stat span { display: block; margin-top: 8px; font-size: 14px; color: #6b7590; }
+.academic-ending-summary { max-width: 790px; margin: 0 auto; }
+.academic-ending-summary h3 { margin: 0 0 24px; font-size: 26px; text-align: center; color: #1c2340; }
+.academic-ending-summary p { margin: 0 0 17px; font-size: 16px; line-height: 1.95; color: #56627b; text-align: justify; }
+.academic-ending-divider { max-width: 790px; height: 1px; margin: 50px auto; background: #dfe4f4; }
+.academic-ending-thanks { max-width: 760px; margin: 0 auto; text-align: center; }
+.academic-ending-heart {
+  display: flex; align-items: center; justify-content: center;
+  width: 54px; height: 54px; margin: 0 auto 22px;
+  border-radius: 50%; background: #e9edff; color: #5361e8; font-size: 24px;
+}
+.academic-ending-thanks h3 { margin: 0 0 25px; font-size: clamp(27px,3vw,36px); color: #1c2340; }
+.academic-ending-thanks p { margin: 0 auto 18px; font-size: 16px; line-height: 1.9; color: #68738d; }
+.academic-ending-thanks .academic-ending-message { margin-top: 25px; color: #4655a8; font-weight: 600; }
+.academic-ending-signature { margin-top: 38px; font-size: 21px; font-weight: 800; color: #4453c5; }
+.academic-ending-signature span { display: block; margin-top: 8px; font-size: 13px; font-weight: 400; color: #8993ab; }
+.academic-ending-actions { display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 15px; margin-top: 35px; }
+.academic-ending-actions .btn { text-decoration: none; }
+
+/* Gioi thieu tac gia */
+.author-section { padding-top: 20px; padding-bottom: 100px; }
+.author-card {
+  max-width: 900px; margin: 0 auto; padding: 65px 70px;
+  background: linear-gradient(145deg,#fff 0%,#f8f9ff 100%);
+  border: 1px solid #e2e6f5; border-radius: 28px;
+  box-shadow: 0 12px 40px rgba(40,55,110,.05);
+  transition: box-shadow .3s ease;
+}
+.author-card:hover { box-shadow: 0 18px 50px rgba(40,55,110,.09); }
+.author-header { text-align: center; }
+.author-header h2 { margin: 16px 0 25px; font-size: clamp(27px,3.5vw,40px); color: #1c2340; line-height: 1.25; }
+.author-name { margin: 0 0 14px; font-size: clamp(23px,3vw,31px); color: #4453c5; font-weight: 800; }
+.author-major { margin: 0 0 8px; font-size: 16px; color: #56627b; }
+.author-university { margin: 0; font-size: 15px; color: #68738d; }
+.author-details { max-width: 700px; margin: 45px auto 0; padding: 12px 28px; background: #fff; border: 1px solid #e6e9f5; border-radius: 18px; }
+.author-detail-row { display: flex; justify-content: space-between; align-items: center; gap: 20px; padding: 18px 0; border-bottom: 1px solid #edf0f7; }
+.author-detail-row:last-child { border-bottom: none; }
+.author-detail-row span { color: #778198; font-size: 15px; }
+.author-detail-row strong { color: #252e4d; font-size: 15px; font-weight: 700; text-align: right; }
+.author-message { max-width: 700px; margin: 32px auto 0; text-align: center; }
+.author-message p { font-size: 15px; line-height: 1.9; color: #68738d; }
+.author-signature { margin-top: 38px; padding-top: 25px; border-top: 1px solid #e0e5f3; text-align: center; }
+.author-signature span { display: block; color: #4453c5; font-size: 20px; font-weight: 800; }
+.author-signature small { display: block; margin-top: 9px; color: #8993ab; font-size: 13px; }
+
+/* Nav co them lien ket Ket luan va Tac gia */
+@media (max-width: 1180px) {
+  .header { flex-wrap: wrap; }
+  .header nav { gap: 14px; flex-wrap: wrap; justify-content: center; }
+}
+@media (max-width: 768px) {
+  .academic-ending { padding-top: 35px; padding-bottom: 60px; }
+  .academic-ending-panel { padding: 48px 22px; border-radius: 22px; }
+  .academic-ending-stats { gap: 9px; margin: 32px auto 42px; }
+  .academic-ending-stat { padding: 20px 8px; border-radius: 13px; }
+  .academic-ending-stat span { font-size: 12px; }
+  .academic-ending-summary h3 { font-size: 23px; }
+  .academic-ending-summary p { font-size: 15px; text-align: left; }
+  .academic-ending-thanks p { font-size: 15px; }
+  .academic-ending-actions { flex-direction: column; }
+  .author-section { padding-top: 20px; padding-bottom: 60px; }
+  .author-card { padding: 45px 22px; border-radius: 22px; }
+  .author-details { padding: 10px 18px; }
+  .author-detail-row { align-items: flex-start; gap: 12px; }
+  .author-detail-row span, .author-detail-row strong { font-size: 13px; }
+  .author-detail-row strong { max-width: 60%; overflow-wrap: anywhere; }
+  .author-major, .author-university { font-size: 14px; }
+  .author-message p { font-size: 14px; }
+}
+@media (max-width: 380px) {
+  .academic-ending-stats { grid-template-columns: 1fr; }
 }
