@@ -19,368 +19,6 @@
   </script>
 
   <script src="script.js" defer></script>
-
-  <style>
-    :root {
-      color-scheme: dark;
-      --night: #041326;
-      --night-2: #071c34;
-      --panel: rgba(7, 29, 53, .88);
-      --panel-soft: rgba(10, 39, 68, .76);
-      --cyan: #17d9ff;
-      --cyan-bright: #54e8ff;
-      --ink: #f2f8ff;
-      --muted: #a8bfd4;
-      --line: rgba(48, 202, 245, .25);
-      --glow: 0 0 36px rgba(0, 190, 255, .16);
-    }
-
-    html {
-      scroll-behavior: smooth;
-      background: var(--night);
-    }
-
-    body {
-      color: var(--ink) !important;
-      background:
-        radial-gradient(ellipse at 82% 8%, rgba(0, 146, 219, .20), transparent 32rem),
-        radial-gradient(ellipse at 12% 44%, rgba(0, 206, 232, .08), transparent 27rem),
-        linear-gradient(145deg, #020b18 0%, #06182d 48%, #031020 100%) !important;
-    }
-
-    body::before {
-      content: "";
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      z-index: -1;
-      opacity: .16;
-      background-image:
-        linear-gradient(rgba(54, 180, 220, .10) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(54, 180, 220, .10) 1px, transparent 1px);
-      background-size: 52px 52px;
-      mask-image: linear-gradient(to bottom, black, transparent 78%);
-    }
-
-    .wrap {
-      width: min(1180px, calc(100% - 40px));
-    }
-
-    .header {
-      position: sticky;
-      top: 12px;
-      z-index: 20;
-      margin-top: 12px;
-      padding: 13px 20px;
-      border: 1px solid var(--line);
-      border-radius: 18px;
-      background: rgba(3, 16, 31, .82) !important;
-      backdrop-filter: blur(18px);
-      box-shadow: 0 12px 36px rgba(0, 0, 0, .22);
-    }
-
-    .logo,
-    .dash-brand,
-    .footer b {
-      color: var(--ink) !important;
-    }
-
-    .logo b,
-    .eyebrow,
-    .chart-caption,
-    .chart-tag,
-    .live-dot {
-      color: var(--cyan-bright) !important;
-    }
-
-    .header nav a,
-    .footer a {
-      color: #c4d6e7 !important;
-      transition: color .2s ease;
-    }
-
-    .header nav a:hover,
-    .footer a:hover {
-      color: var(--cyan) !important;
-    }
-
-    .hero {
-      position: relative;
-      min-height: 650px;
-      gap: 42px;
-      align-items: center;
-    }
-
-    .hero h1 {
-      color: #f4f9ff !important;
-      letter-spacing: -.045em;
-    }
-
-    .hero h1 em,
-    .overview h2 em {
-      color: var(--cyan) !important;
-      text-shadow: 0 0 28px rgba(23, 217, 255, .22);
-    }
-
-    .hero-copy > p,
-    .overview-copy > p,
-    .video-info p,
-    .feature p,
-    .cta p,
-    .academic-ending p,
-    .author-message p {
-      color: var(--muted) !important;
-    }
-
-    .hero-chart,
-    .dashboard,
-    .chart-card,
-    .stat,
-    .feature,
-    .video-frame,
-    .video-info,
-    .academic-ending-panel,
-    .author-card {
-      color: var(--ink) !important;
-      border: 1px solid var(--line) !important;
-      background:
-        linear-gradient(145deg, rgba(9, 34, 60, .94), rgba(4, 20, 38, .94)) !important;
-      box-shadow: var(--glow), 0 22px 60px rgba(0, 0, 0, .28) !important;
-    }
-
-    .hero-chart {
-      position: relative;
-      overflow: hidden;
-      border-radius: 24px !important;
-    }
-
-    .hero-chart::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
-      background:
-        linear-gradient(120deg, transparent 30%, rgba(25, 208, 255, .06), transparent 72%);
-    }
-
-    .float-pill,
-    .chart-tag {
-      border: 1px solid var(--line) !important;
-      background: #08233e !important;
-      color: var(--cyan-bright) !important;
-    }
-
-    .ticker {
-      border-block: 1px solid var(--line);
-      background: rgba(3, 17, 32, .72) !important;
-    }
-
-    .ticker > div {
-      color: var(--muted) !important;
-    }
-
-    .ticker strong {
-      color: var(--cyan-bright) !important;
-    }
-
-    .overview {
-      padding-top: 110px;
-      padding-bottom: 110px;
-    }
-
-    .overview h2,
-    .section-head h2,
-    .cta h2 {
-      color: var(--ink) !important;
-    }
-
-    .overview-copy li {
-      color: #d2e2ef !important;
-    }
-
-    .stat small,
-    .stat span,
-    .chart-heading small,
-    .dash-brand span,
-    .dash-bottom small,
-    .hint {
-      color: var(--muted) !important;
-    }
-
-    .stat strong,
-    .dash-bottom b {
-      color: var(--cyan-bright) !important;
-    }
-
-    .dash-top,
-    .chart-heading {
-      border-color: var(--line) !important;
-    }
-
-    .feature {
-      border-radius: 20px !important;
-      transition: transform .22s ease, border-color .22s ease;
-    }
-
-    .feature:hover {
-      transform: translateY(-5px);
-      border-color: rgba(23, 217, 255, .65) !important;
-    }
-
-    .feature h3,
-    .video-info h3,
-    .academic-ending h3,
-    .author-card h2,
-    .author-card h3 {
-      color: var(--ink) !important;
-    }
-
-    .feature-icon,
-    .feature-action,
-    .mini-line {
-      color: var(--cyan-bright) !important;
-    }
-
-    .mini-bars i {
-      background: linear-gradient(to top, #047da8, var(--cyan)) !important;
-    }
-
-    .video-section,
-    .features {
-      padding-top: 80px;
-      padding-bottom: 80px;
-    }
-
-    .video-info {
-      padding: 28px;
-      border-radius: 20px;
-    }
-
-    video {
-      background: #020a14;
-    }
-
-    .cta {
-      position: relative;
-      overflow: hidden;
-      border: 1px solid var(--line) !important;
-      border-radius: 24px;
-      background: linear-gradient(110deg, #08243f, #064365) !important;
-    }
-
-    .cta-orb {
-      background:
-        radial-gradient(circle, rgba(22, 220, 255, .45), transparent 68%) !important;
-    }
-
-    .academic-ending-heart,
-    .author-icon {
-      color: var(--cyan) !important;
-    }
-
-    .academic-ending-signature,
-    .author-signature,
-    .author-detail-row {
-      border-color: var(--line) !important;
-    }
-
-    .author-eyebrow,
-    .author-major,
-    .author-signature span {
-      color: var(--cyan-bright) !important;
-    }
-
-    .author-university,
-    .author-detail-row span,
-    .author-signature small {
-      color: var(--muted) !important;
-    }
-
-    .author-detail-row strong {
-      color: var(--ink) !important;
-    }
-
-    .footer {
-      border-color: var(--line) !important;
-      color: var(--muted) !important;
-    }
-
-    .btn-dark,
-    .btn-blue {
-      color: #021321 !important;
-      border: 1px solid transparent !important;
-      background: linear-gradient(100deg, #11d5f5, #26aefa) !important;
-      box-shadow: 0 8px 26px rgba(0, 190, 255, .19);
-    }
-
-    .btn-dark:hover,
-    .btn-blue:hover {
-      filter: brightness(1.12);
-      transform: translateY(-1px);
-    }
-
-    .btn-outline {
-      color: var(--cyan-bright) !important;
-      border: 1px solid rgba(23, 217, 255, .48) !important;
-      background: rgba(3, 20, 38, .6) !important;
-    }
-
-    .btn-outline:hover {
-      background: rgba(0, 174, 220, .12) !important;
-    }
-
-    ::selection {
-      color: #00101d;
-      background: var(--cyan);
-    }
-
-    @media (max-width: 760px) {
-      .wrap {
-        width: min(100% - 28px, 600px);
-      }
-
-      .header {
-        position: relative;
-        top: auto;
-        flex-wrap: wrap;
-      }
-
-      .header nav {
-        order: 3;
-        width: 100%;
-        overflow-x: auto;
-      }
-
-      .hero {
-        min-height: auto;
-        padding-top: 70px;
-        padding-bottom: 55px;
-      }
-
-      .hero h1 {
-        font-size: clamp(2.4rem, 11vw, 4rem);
-      }
-
-      .overview,
-      .features,
-      .video-section {
-        padding-top: 65px;
-        padding-bottom: 65px;
-      }
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      html {
-        scroll-behavior: auto;
-      }
-
-      *,
-      *::before,
-      *::after {
-        transition-duration: .01ms !important;
-      }
-    }
-  </style>
 </head>
 
 <body>
@@ -410,6 +48,7 @@
     <!-- TRANG CHỦ -->
     <section class="hero wrap" id="home">
       <div class="hero-copy">
+
         <span class="eyebrow">
           ✦ PHÂN TÍCH CHỨNG KHOÁN BẰNG PYTHON
         </span>
@@ -466,6 +105,7 @@
 
     <!-- THỐNG KÊ NHANH -->
     <section class="ticker wrap">
+
       <div>
         <small>DỮ LIỆU</small>
         <strong>ABC-27</strong>
@@ -489,11 +129,14 @@
         <strong>OHLC</strong>
         <span>Open · High · Low · Close</span>
       </div>
+
     </section>
 
     <!-- DASHBOARD -->
     <section class="overview wrap" id="dashboard">
+
       <div class="overview-copy">
+
         <span class="eyebrow">
           TRỰC QUAN HÓA THÔNG MINH
         </span>
@@ -517,6 +160,7 @@
 
         <label class="btn btn-blue upload">
           ↑ Chọn file abc-27.csv
+
           <input
             id="csvInput"
             type="file"
@@ -531,6 +175,7 @@
       </div>
 
       <div class="dashboard">
+
         <div class="dash-top">
           <div class="dash-brand">
             ◈ Góc Nhìn Dữ Liệu
@@ -541,6 +186,7 @@
         </div>
 
         <div class="stats">
+
           <div class="stat">
             <small>Số ngày</small>
             <strong id="days">—</strong>
@@ -564,13 +210,16 @@
             <strong id="lowest">—</strong>
             <span>VND</span>
           </div>
+
         </div>
 
         <div class="chart-card">
           <div class="chart-heading">
             <div>
               <h3>Diễn biến giá đóng cửa</h3>
-              <small>ABC-27 · Mỗi nến đại diện 5 ngày</small>
+              <small>
+                ABC-27 · Mỗi nến đại diện 5 ngày
+              </small>
             </div>
 
             <span class="chart-tag">OHLC</span>
@@ -582,6 +231,7 @@
         </div>
 
         <div class="dash-bottom">
+
           <div>
             <b id="rise">—</b>
             <small>Nến tăng</small>
@@ -596,21 +246,30 @@
             <b>Python</b>
             <small>Pandas · NumPy · Matplotlib</small>
           </div>
+
         </div>
       </div>
     </section>
 
     <!-- TÍNH NĂNG CÓ THỂ NHẤN -->
     <section class="features wrap" id="features">
+
       <div class="section-head">
         <span class="eyebrow">CÁC TÍNH NĂNG</span>
         <h2>Tất cả trong một nền tảng.</h2>
       </div>
 
       <div class="feature-grid">
-        <a class="feature feature-purple feature-clickable" href="#dashboard">
+
+        <!-- PHÂN TÍCH DỮ LIỆU -->
+        <a
+          class="feature feature-purple feature-clickable"
+          href="#dashboard"
+        >
           <span class="feature-icon">◈</span>
+
           <h3>Phân tích dữ liệu</h3>
+
           <p>
             Xử lý dữ liệu CSV, tổng hợp các nhóm 5 ngày
             và phân tích diễn biến giá chứng khoán.
@@ -622,42 +281,64 @@
             <i></i><i></i><i></i><i></i>
           </div>
 
-          <span class="feature-action">Xem phân tích →</span>
+          <span class="feature-action">
+            Xem phân tích →
+          </span>
         </a>
 
-        <a class="feature feature-clickable" href="#priceChart">
+        <!-- BIỂU ĐỒ TƯƠNG TÁC -->
+        <a
+          class="feature feature-clickable"
+          href="#priceChart"
+        >
           <span class="feature-icon">⌁</span>
+
           <h3>Biểu đồ tương tác</h3>
+
           <p>
             Quan sát giá đóng cửa của từng nến
             và xem giá trị trực tiếp trên biểu đồ.
           </p>
 
           <div class="mini-line">⌁⌁⌁↗</div>
-          <span class="feature-action">Khám phá biểu đồ →</span>
+
+          <span class="feature-action">
+            Khám phá biểu đồ →
+          </span>
         </a>
 
-        <a class="feature feature-clickable" href="#video">
+        <!-- VIDEO MÔ PHỎNG -->
+        <a
+          class="feature feature-clickable"
+          href="#video"
+        >
           <span class="feature-icon">▷</span>
+
           <h3>Video mô phỏng</h3>
+
           <p>
             Xem video mô phỏng 120 giây được
             tạo bằng Python và Matplotlib.
           </p>
 
-          <span class="feature-action">Xem mô phỏng →</span>
+          <span class="feature-action">
+            Xem mô phỏng →
+          </span>
         </a>
+
       </div>
     </section>
 
     <!-- VIDEO PYTHON -->
     <section class="video-section wrap" id="video">
+
       <div class="section-head">
         <span class="eyebrow">VIDEO MÔ PHỎNG</span>
         <h2>Quan sát thị trường chuyển động.</h2>
       </div>
 
       <div class="video-layout">
+
         <div class="video-frame">
           <video
             id="stockVideo"
@@ -669,6 +350,7 @@
               src="videos/stock_simulation_2min.mp4"
               type="video/mp4"
             >
+
             Trình duyệt không hỗ trợ video MP4.
           </video>
         </div>
@@ -699,13 +381,17 @@
             ↗ Mở video trong tab mới
           </a>
         </div>
+
       </div>
     </section>
 
     <!-- BANNER -->
     <section class="cta wrap">
       <div>
-        <span class="eyebrow">DỰ ÁN KHOA HỌC DỮ LIỆU</span>
+        <span class="eyebrow">
+          DỰ ÁN KHOA HỌC DỮ LIỆU
+        </span>
+
         <h2>Biến dữ liệu thành góc nhìn.</h2>
 
         <p>
@@ -724,15 +410,22 @@
     <!-- LỜI CẢM ƠN -->
     <section class="academic-ending wrap" id="conclusion">
       <div class="academic-ending-panel">
+
         <div class="academic-ending-thanks">
-          <div class="academic-ending-heart" aria-hidden="true">♥</div>
+
+          <div
+            class="academic-ending-heart"
+            aria-hidden="true"
+          >
+            ♥
+          </div>
 
           <h3>Xin chân thành cảm ơn!</h3>
 
           <p>
-            Cảm ơn bạn đã dành thời gian khám phá
-            Góc Nhìn Dữ Liệu. Sự quan tâm của bạn là niềm vui
-            và động lực với tôi.
+    Cảm ơn bạn đã dành thời gian khám phá
+    Góc Nhìn Dữ Liệu. Sự quan tâm của bạn là niềm vui
+    và động lực với tôi.
           </p>
 
           <p class="academic-ending-message">
@@ -742,23 +435,37 @@
 
           <div class="academic-ending-signature">
             ◈ Góc Nhìn Dữ Liệu
-            <span>Khám phá dữ liệu · Kiến tạo góc nhìn</span>
+
+            <span>
+              Khám phá dữ liệu · Kiến tạo góc nhìn
+            </span>
           </div>
 
           <div class="academic-ending-actions">
-            <a class="btn btn-dark" href="#home">↑ Trở về đầu trang</a>
+            <a class="btn btn-dark" href="#home">
+              ↑ Trở về đầu trang
+            </a>
+
             <a class="btn btn-outline" href="#dashboard">
               Khám phá lại dữ liệu →
             </a>
           </div>
+
         </div>
+
       </div>
     </section>
 
     <!-- GIỚI THIỆU TÁC GIẢ -->
-    <section class="author-section wrap" id="author">
+    <section
+      class="author-section wrap"
+      id="author"
+    >
       <div class="author-card">
+
+        <!-- TIÊU ĐỀ TÁC GIẢ -->
         <div class="author-header">
+
           <div class="author-icon" aria-hidden="true">
             <svg
               viewBox="0 0 24 24"
@@ -774,9 +481,16 @@
             </svg>
           </div>
 
-          <span class="author-eyebrow">THÔNG TIN TÁC GIẢ</span>
+          <span class="author-eyebrow">
+            THÔNG TIN TÁC GIẢ
+          </span>
+
           <h2>Người thực hiện dự án</h2>
-          <h3 class="author-name">Huỳnh Thanh Phúc</h3>
+
+          <!-- TÊN TÁC GIẢ -->
+          <h3 class="author-name">
+            Huỳnh Thanh Phúc
+          </h3>
 
           <p class="author-major">
             Sinh viên ngành Khoa học dữ liệu
@@ -785,9 +499,12 @@
           <p class="author-university">
             Trường Đại học Sư phạm – Đại học Đà Nẵng
           </p>
+
         </div>
 
+        <!-- THÔNG TIN HỌC THUẬT -->
         <div class="author-details">
+
           <div class="author-detail-row">
             <span>Học phần</span>
             <strong>Python nâng cao</strong>
@@ -807,8 +524,10 @@
             <span>Năm thực hiện</span>
             <strong>2026</strong>
           </div>
+
         </div>
 
+        <!-- THÔNG ĐIỆP TÁC GIẢ -->
         <div class="author-message">
           <p>
             Dự án được thực hiện với mục tiêu vận dụng
@@ -819,10 +538,15 @@
           </p>
         </div>
 
+        <!-- CHỮ KÝ -->
         <div class="author-signature">
           <span>◈ Góc Nhìn Dữ Liệu</span>
-          <small>Khám phá dữ liệu · Kiến tạo góc nhìn</small>
+
+          <small>
+            Khám phá dữ liệu · Kiến tạo góc nhìn
+          </small>
         </div>
+
       </div>
     </section>
 
@@ -836,7 +560,9 @@
       Dự án phân tích chứng khoán ABC-27 bằng Python
     </span>
 
-    <a href="#home">Về đầu trang ↑</a>
+    <a href="#home">
+      Về đầu trang ↑
+    </a>
   </footer>
 
 </body>
