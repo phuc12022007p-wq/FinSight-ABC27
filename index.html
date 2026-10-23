@@ -4,8 +4,7 @@
 
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport"
-        content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <meta name="description"
         content="Góc Nhìn Dữ Liệu - Phân tích và trực quan hóa dữ liệu chứng khoán ABC-27">
@@ -15,8 +14,8 @@
   <!-- CSS CHÍNH -->
   <link rel="stylesheet" href="style.css?v=14">
 
-  <!-- CSS THƯ VIỆN BIỂU ĐỒ -->
-  <link rel="stylesheet" href="gallery.css?v=18">
+  <!-- CSS THƯ VIỆN BIỂU ĐỒ MỚI -->
+  <link rel="stylesheet" href="gallery.css?v=20">
 
   <!-- CHART.JS -->
   <script
@@ -24,21 +23,15 @@
     defer>
   </script>
 
-  <!-- JAVASCRIPT DASHBOARD -->
+  <!-- JAVASCRIPT -->
   <script src="script.js?v=14" defer></script>
-
-  <!-- JAVASCRIPT THƯ VIỆN BIỂU ĐỒ -->
   <script src="gallery.js?v=16" defer></script>
 </head>
 
 <body>
 
-  <!-- =====================================
-       HEADER
-  ====================================== -->
-
+  <!-- HEADER -->
   <header class="header wrap">
-
     <a class="logo" href="#home">
       ◈ Góc Nhìn <b>Dữ Liệu</b>
     </a>
@@ -56,19 +49,14 @@
     <a class="btn btn-dark" href="#dashboard">
       Khám phá ngay ↗
     </a>
-
   </header>
 
   <main>
 
-    <!-- =====================================
-         01. TRANG CHỦ
-    ====================================== -->
-
+    <!-- 01. TRANG CHỦ -->
     <section class="hero wrap" id="home">
 
       <div class="hero-copy">
-
         <span class="eyebrow">
           ✦ PHÂN TÍCH CHỨNG KHOÁN BẰNG PYTHON
         </span>
@@ -87,7 +75,6 @@
         </p>
 
         <div class="actions">
-
           <a class="btn btn-dark" href="#dashboard">
             Khám phá Dashboard →
           </a>
@@ -95,42 +82,32 @@
           <a class="btn btn-outline" href="#video">
             ▷ Xem video
           </a>
-
         </div>
-
       </div>
 
-      <!-- BIỂU ĐỒ ĐẦU TRANG -->
-
       <div class="hero-visual">
-
         <div class="orb orb-one"></div>
         <div class="orb orb-two"></div>
 
         <div class="hero-chart">
-
           <div class="chart-caption">
             ABC-27 · TỔNG QUAN BIẾN ĐỘNG
           </div>
 
           <div class="hero-canvas-wrap"
                style="position: relative;">
-
             <canvas
               id="heroChart"
               aria-label="Biểu đồ tổng quan biến động giá ABC-27"
               role="img">
             </canvas>
-
           </div>
 
-          <p
-            class="chart-placeholder"
-            id="heroMessage"
-            aria-live="polite">
+          <p class="chart-placeholder"
+             id="heroMessage"
+             aria-live="polite">
             Đang tải biểu đồ...
           </p>
-
         </div>
 
         <span class="float-pill pill-one">
@@ -140,18 +117,11 @@
         <span class="float-pill pill-two">
           73 nến Nhật
         </span>
-
       </div>
-
     </section>
 
-
-    <!-- =====================================
-         02. THỐNG KÊ NHANH
-    ====================================== -->
-
+    <!-- 02. THỐNG KÊ NHANH -->
     <section class="ticker wrap">
-
       <div>
         <small>DỮ LIỆU</small>
         <strong>ABC-27</strong>
@@ -175,18 +145,12 @@
         <strong>OHLC</strong>
         <span>Open · High · Low · Close</span>
       </div>
-
     </section>
 
-
-    <!-- =====================================
-         03. DASHBOARD
-    ====================================== -->
-
+    <!-- 03. DASHBOARD -->
     <section class="overview wrap" id="dashboard">
 
       <div class="overview-copy">
-
         <span class="eyebrow">
           TRỰC QUAN HÓA THÔNG MINH
         </span>
@@ -209,10 +173,7 @@
           <li>✓ Mô phỏng bằng Python</li>
         </ul>
 
-        <!-- TẢI FILE CSV -->
-
         <label class="btn btn-blue upload">
-
           ↑ Chọn file abc-27.csv
 
           <input
@@ -220,25 +181,15 @@
             type="file"
             accept=".csv,text/csv"
             hidden>
-
         </label>
 
-        <p
-          class="hint"
-          id="status"
-          aria-live="polite">
+        <p class="hint" id="status" aria-live="polite">
           Đang khởi động Dashboard...
         </p>
-
       </div>
 
-
-      <!-- DASHBOARD CHÍNH -->
-
       <div class="dashboard">
-
         <div class="dash-top">
-
           <div class="dash-brand">
             ◈ Góc Nhìn Dữ Liệu
             <span>/ Tổng quan thị trường</span>
@@ -247,13 +198,9 @@
           <span class="live-dot">
             ● ABC-27
           </span>
-
         </div>
 
-        <!-- THỐNG KÊ -->
-
         <div class="stats">
-
           <div class="stat">
             <small>Số ngày</small>
             <strong id="days">—</strong>
@@ -277,15 +224,10 @@
             <strong id="lowest">—</strong>
             <span>VND</span>
           </div>
-
         </div>
 
-        <!-- BIỂU ĐỒ GIÁ TƯƠNG TÁC -->
-
         <div class="chart-card">
-
           <div class="chart-heading">
-
             <div>
               <h3>Diễn biến giá đóng cửa</h3>
               <small>
@@ -293,33 +235,24 @@
               </small>
             </div>
 
-            <span class="chart-tag">
-              OHLC
-            </span>
-
+            <span class="chart-tag">OHLC</span>
           </div>
 
           <div class="main-chart"
                style="position: relative;">
-
             <canvas
               id="priceChart"
               aria-label="Biểu đồ giá đóng cửa ABC-27"
               role="img">
             </canvas>
-
           </div>
 
           <p class="abc-chart-hint">
             Chạm hoặc rê chuột để xem số liệu từng nến.
           </p>
-
         </div>
 
-        <!-- THỐNG KÊ NẾN -->
-
         <div class="dash-bottom">
-
           <div>
             <b id="rise">—</b>
             <small>Nến tăng</small>
@@ -332,74 +265,44 @@
 
           <div>
             <b>Python</b>
-            <small>
-              Pandas · NumPy · Matplotlib
-            </small>
+            <small>Pandas · NumPy · Matplotlib</small>
           </div>
-
         </div>
-
       </div>
-
     </section>
 
-
-    <!-- =====================================
-         04. THƯ VIỆN BIỂU ĐỒ
-         KHÔNG CÓ NÚT THU GỌN
-    ====================================== -->
-
+    <!-- 04. THƯ VIỆN BIỂU ĐỒ -->
     <section class="abc-gallery wrap" id="abc-gallery">
 
-      <!-- TIÊU ĐỀ -->
-
       <div class="abc-gallery__header">
-
         <div class="abc-gallery__heading">
-
           <h2>Thư viện biểu đồ</h2>
-
-          <span>
-            12 biểu đồ · Dữ liệu ABC-27
-          </span>
-
+          <span>12 biểu đồ · Dữ liệu ABC-27</span>
         </div>
-
       </div>
 
-      <!-- BỘ LỌC THEO CHỦ ĐỀ -->
-
+      <!-- Bộ lọc do gallery.js tạo -->
       <div
         class="abc-gallery__tabs"
         role="group"
         aria-label="Lọc biểu đồ theo chủ đề">
       </div>
 
-      <!-- SỐ LƯỢNG BIỂU ĐỒ -->
-
       <div class="abc-gallery__status">
-
-        <span
-          id="galleryCount"
-          aria-live="polite">
+        <span id="galleryCount" aria-live="polite">
           Hiển thị 12 / 12 biểu đồ
         </span>
 
-        <span>
-          ▦ Dạng thẻ
-        </span>
-
+        <span>▦ Dạng thẻ</span>
       </div>
 
-      <!-- DANH SÁCH 12 BIỂU ĐỒ -->
-
+      <!-- 12 thẻ biểu đồ do gallery.js tạo -->
       <div
         class="abc-gallery__grid"
         id="abc-gallery-grid">
       </div>
 
-      <!-- CỬA SỔ PHÓNG TO BIỂU ĐỒ -->
-
+      <!-- Cửa sổ phóng to -->
       <dialog
         class="abc-gallery__dialog"
         aria-label="Xem biểu đồ phóng to">
@@ -411,44 +314,23 @@
         </button>
 
         <img alt="Biểu đồ chứng khoán ABC-27">
-
         <figcaption></figcaption>
-
       </dialog>
 
     </section>
 
-
-    <!-- =====================================
-         05. TÍNH NĂNG
-    ====================================== -->
-
+    <!-- 05. TÍNH NĂNG -->
     <section class="features wrap" id="features">
-
       <div class="section-head">
-
-        <span class="eyebrow">
-          CÁC TÍNH NĂNG
-        </span>
-
-        <h2>
-          Tất cả trong một nền tảng.
-        </h2>
-
+        <span class="eyebrow">CÁC TÍNH NĂNG</span>
+        <h2>Tất cả trong một nền tảng.</h2>
       </div>
 
       <div class="feature-grid">
 
-        <!-- PHÂN TÍCH DỮ LIỆU -->
-
-        <a
-          class="feature feature-purple feature-clickable"
-          href="#dashboard">
-
-          <span class="feature-icon">
-            ◈
-          </span>
-
+        <a class="feature feature-purple feature-clickable"
+           href="#dashboard">
+          <span class="feature-icon">◈</span>
           <h3>Phân tích dữ liệu</h3>
 
           <p>
@@ -466,19 +348,11 @@
           <span class="feature-action">
             Xem phân tích →
           </span>
-
         </a>
 
-        <!-- THƯ VIỆN BIỂU ĐỒ -->
-
-        <a
-          class="feature feature-clickable"
-          href="#abc-gallery">
-
-          <span class="feature-icon">
-            ⌁
-          </span>
-
+        <a class="feature feature-clickable"
+           href="#abc-gallery">
+          <span class="feature-icon">⌁</span>
           <h3>Thư viện biểu đồ</h3>
 
           <p>
@@ -488,26 +362,16 @@
             nhóm nội dung phân tích.
           </p>
 
-          <div class="mini-line">
-            ⌁⌁⌁↗
-          </div>
+          <div class="mini-line">⌁⌁⌁↗</div>
 
           <span class="feature-action">
             Khám phá biểu đồ →
           </span>
-
         </a>
 
-        <!-- VIDEO MÔ PHỎNG -->
-
-        <a
-          class="feature feature-clickable"
-          href="#video">
-
-          <span class="feature-icon">
-            ▷
-          </span>
-
+        <a class="feature feature-clickable"
+           href="#video">
+          <span class="feature-icon">▷</span>
           <h3>Video mô phỏng</h3>
 
           <p>
@@ -519,38 +383,21 @@
           <span class="feature-action">
             Xem mô phỏng →
           </span>
-
         </a>
 
       </div>
-
     </section>
 
-
-    <!-- =====================================
-         06. VIDEO PYTHON
-    ====================================== -->
-
+    <!-- 06. VIDEO PYTHON -->
     <section class="video-section wrap" id="video">
 
       <div class="section-head">
-
-        <span class="eyebrow">
-          VIDEO MÔ PHỎNG
-        </span>
-
-        <h2>
-          Quan sát thị trường chuyển động.
-        </h2>
-
+        <span class="eyebrow">VIDEO MÔ PHỎNG</span>
+        <h2>Quan sát thị trường chuyển động.</h2>
       </div>
 
       <div class="video-layout">
-
-        <!-- VIDEO -->
-
         <div class="video-frame">
-
           <video
             id="stockVideo"
             controls
@@ -562,18 +409,11 @@
               type="video/mp4">
 
             Trình duyệt không hỗ trợ video MP4.
-
           </video>
-
         </div>
 
-        <!-- THÔNG TIN VIDEO -->
-
         <div class="video-info">
-
-          <h3>
-            Mô phỏng chứng khoán ABC-27
-          </h3>
+          <h3>Mô phỏng chứng khoán ABC-27</h3>
 
           <p>
             Video tạo bằng Python,
@@ -583,24 +423,20 @@
           </p>
 
           <p>
-            <strong>Thời lượng:</strong>
-            120 giây
+            <strong>Thời lượng:</strong> 120 giây
           </p>
 
           <p>
-            <strong>Dữ liệu:</strong>
-            365 ngày dữ liệu
+            <strong>Dữ liệu:</strong> 365 ngày dữ liệu
           </p>
 
           <p>
-            <strong>Phương pháp:</strong>
-            Nến Nhật OHLC
+            <strong>Phương pháp:</strong> Nến Nhật OHLC
           </p>
 
-          <p
-            class="hint"
-            id="videoStatus"
-            aria-live="polite">
+          <p class="hint"
+             id="videoStatus"
+             aria-live="polite">
             Đang kiểm tra video...
           </p>
 
@@ -609,73 +445,47 @@
             href="videos/stock_simulation_2min.mp4"
             target="_blank"
             rel="noopener">
-
             ↗ Mở video trong tab mới
-
           </a>
-
         </div>
-
       </div>
-
     </section>
 
-
-    <!-- =====================================
-         07. BANNER CUỐI
-    ====================================== -->
-
+    <!-- 07. BANNER CUỐI -->
     <section class="cta wrap">
-
       <div>
-
         <span class="eyebrow">
           DỰ ÁN KHOA HỌC DỮ LIỆU
         </span>
 
-        <h2>
-          Biến dữ liệu thành góc nhìn.
-        </h2>
+        <h2>Biến dữ liệu thành góc nhìn.</h2>
 
         <p>
           Khám phá chứng khoán bằng Python
           và trực quan hóa dữ liệu.
         </p>
 
-        <a
-          class="btn btn-blue"
-          href="#dashboard">
+        <a class="btn btn-blue" href="#dashboard">
           Khám phá Dashboard →
         </a>
-
       </div>
 
       <div class="cta-orb"></div>
-
     </section>
 
-
-    <!-- =====================================
-         08. LỜI CẢM ƠN
-    ====================================== -->
-
-    <section
-      class="academic-ending wrap"
-      id="conclusion">
+    <!-- 08. LỜI CẢM ƠN -->
+    <section class="academic-ending wrap"
+             id="conclusion">
 
       <div class="academic-ending-panel">
-
         <div class="academic-ending-thanks">
 
-          <div
-            class="academic-ending-heart"
-            aria-hidden="true">
+          <div class="academic-ending-heart"
+               aria-hidden="true">
             ♥
           </div>
 
-          <h3>
-            Xin chân thành cảm ơn!
-          </h3>
+          <h3>Xin chân thành cảm ơn!</h3>
 
           <p>
             Cảm ơn bạn đã dành thời gian
@@ -691,52 +501,34 @@
           </p>
 
           <div class="academic-ending-signature">
-
             ◈ Góc Nhìn Dữ Liệu
-
             <span>
               Khám phá dữ liệu · Kiến tạo góc nhìn
             </span>
-
           </div>
 
           <div class="academic-ending-actions">
-
-            <a
-              class="btn btn-dark"
-              href="#home">
+            <a class="btn btn-dark" href="#home">
               ↑ Trở về đầu trang
             </a>
 
-            <a
-              class="btn btn-outline"
-              href="#dashboard">
+            <a class="btn btn-outline"
+               href="#dashboard">
               Khám phá lại dữ liệu →
             </a>
-
           </div>
 
         </div>
-
       </div>
-
     </section>
 
-
-    <!-- =====================================
-         09. THÔNG TIN TÁC GIẢ
-    ====================================== -->
-
+    <!-- 09. THÔNG TIN TÁC GIẢ -->
     <section class="author-section wrap" id="author">
-
       <div class="author-card">
 
         <div class="author-header">
-
-          <div
-            class="author-icon"
-            aria-hidden="true">
-
+          <div class="author-icon"
+               aria-hidden="true">
             <svg
               viewBox="0 0 24 24"
               fill="none"
@@ -745,27 +537,17 @@
               stroke-linecap="round"
               stroke-linejoin="round">
 
-              <path
-                d="m2 10 10-5 10 5-10 5-10-5Z">
-              </path>
-
-              <path
-                d="M6 12v5c3.7 2.8 8.3 2.8 12 0v-5">
-              </path>
-
+              <path d="m2 10 10-5 10 5-10 5-10-5Z"></path>
+              <path d="M6 12v5c3.7 2.8 8.3 2.8 12 0v-5"></path>
               <path d="M22 10v7"></path>
-
             </svg>
-
           </div>
 
           <span class="author-eyebrow">
             THÔNG TIN TÁC GIẢ
           </span>
 
-          <h2>
-            Người thực hiện dự án
-          </h2>
+          <h2>Người thực hiện dự án</h2>
 
           <h3 class="author-name">
             Huỳnh Thanh Phúc
@@ -779,13 +561,9 @@
             Trường Đại học Sư phạm –
             Đại học Đà Nẵng
           </p>
-
         </div>
 
-        <!-- THÔNG TIN HỌC THUẬT -->
-
         <div class="author-details">
-
           <div class="author-detail-row">
             <span>Học phần</span>
             <strong>Python nâng cao</strong>
@@ -798,22 +576,16 @@
 
           <div class="author-detail-row">
             <span>Tên dự án</span>
-            <strong>
-              Phân tích chứng khoán ABC-27
-            </strong>
+            <strong>Phân tích chứng khoán ABC-27</strong>
           </div>
 
           <div class="author-detail-row">
             <span>Năm thực hiện</span>
             <strong>2026</strong>
           </div>
-
         </div>
 
-        <!-- THÔNG ĐIỆP TÁC GIẢ -->
-
         <div class="author-message">
-
           <p>
             Dự án được thực hiện với mục tiêu
             vận dụng kiến thức lập trình Python
@@ -822,39 +594,23 @@
             nghiên cứu và trình bày kết quả
             một cách khoa học.
           </p>
-
         </div>
 
-        <!-- CHỮ KÝ -->
-
         <div class="author-signature">
-
-          <span>
-            ◈ Góc Nhìn Dữ Liệu
-          </span>
-
+          <span>◈ Góc Nhìn Dữ Liệu</span>
           <small>
             Khám phá dữ liệu · Kiến tạo góc nhìn
           </small>
-
         </div>
 
       </div>
-
     </section>
 
   </main>
 
-
-  <!-- =====================================
-       FOOTER
-  ====================================== -->
-
+  <!-- FOOTER -->
   <footer class="footer wrap">
-
-    <b>
-      ◈ Góc Nhìn Dữ Liệu
-    </b>
+    <b>◈ Góc Nhìn Dữ Liệu</b>
 
     <span>
       Dự án phân tích chứng khoán
@@ -864,7 +620,6 @@
     <a href="#home">
       Về đầu trang ↑
     </a>
-
   </footer>
 
 </body>
