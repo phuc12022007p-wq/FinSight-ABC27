@@ -22,8 +22,8 @@
   <!-- CSS CHÍNH -->
   <link rel="stylesheet" href="style.css">
 
-  <!-- CSS THƯ VIỆN BIỂU ĐỒ -->
-  <link rel="stylesheet" href="gallery.css">
+  <!-- CSS THƯ VIỆN BIỂU ĐỒ MẪU 2 -->
+  <link rel="stylesheet" href="gallery.css?v=6">
 
   <!-- CHART.JS -->
   <script
@@ -32,14 +32,18 @@
   ></script>
 
   <!-- JAVASCRIPT DASHBOARD -->
-  <script src="gallery.js?v=4" defer></script>
+  <script src="script.js" defer></script>
+
+  <!-- JAVASCRIPT THƯ VIỆN BIỂU ĐỒ -->
+  <script src="gallery.js?v=6" defer></script>
+
 </head>
 
 <body>
 
-  <!-- =========================
+  <!-- =====================================
        HEADER
-  ========================== -->
+  ====================================== -->
 
   <header class="header wrap">
 
@@ -65,9 +69,9 @@
 
   <main>
 
-    <!-- =========================
+    <!-- =====================================
          01. TRANG CHỦ
-    ========================== -->
+    ====================================== -->
 
     <section class="hero wrap" id="home">
 
@@ -142,9 +146,9 @@
     </section>
 
 
-    <!-- =========================
+    <!-- =====================================
          02. THỐNG KÊ NHANH
-    ========================== -->
+    ====================================== -->
 
     <section class="ticker wrap">
 
@@ -175,9 +179,9 @@
     </section>
 
 
-    <!-- =========================
+    <!-- =====================================
          03. DASHBOARD
-    ========================== -->
+    ====================================== -->
 
     <section
       class="overview wrap"
@@ -227,6 +231,7 @@
 
 
       <!-- BẢNG ĐIỀU KHIỂN -->
+
       <div class="dashboard">
 
         <div class="dash-top">
@@ -244,6 +249,7 @@
 
 
         <!-- THỐNG KÊ -->
+
         <div class="stats">
 
           <div class="stat">
@@ -274,12 +280,14 @@
 
 
         <!-- BIỂU ĐỒ GIÁ -->
+
         <div class="chart-card">
 
           <div class="chart-heading">
 
             <div>
               <h3>Diễn biến giá đóng cửa</h3>
+
               <small>
                 ABC-27 · Mỗi nến đại diện 5 ngày
               </small>
@@ -299,6 +307,7 @@
 
 
         <!-- THỐNG KÊ NẾN -->
+
         <div class="dash-bottom">
 
           <div>
@@ -325,45 +334,45 @@
     </section>
 
 
-    <!-- =========================
+    <!-- =====================================
          04. THƯ VIỆN BIỂU ĐỒ
-         HÌNH GỐC TỪ BÁO CÁO
-    ========================== -->
+         MẪU 2 - DASHBOARD
+    ====================================== -->
 
     <section
       class="abc-gallery wrap"
       id="abc-gallery"
     >
 
-      <div class="abc-gallery__intro">
+      <!-- TIÊU ĐỀ VÀ NÚT THU GỌN -->
 
-        <span class="abc-gallery__eyebrow">
-          HÌNH GỐC TỪ BÁO CÁO PYTHON NÂNG CAO
-        </span>
+      <div class="abc-gallery__header">
 
-        <h2>
-          Thư viện biểu đồ ABC-27
-        </h2>
+        <div class="abc-gallery__heading">
 
-        <p>
-          Khám phá các hình biểu đồ và sơ đồ
-          được trích xuất trực tiếp từ bài
-          báo cáo phân tích chứng khoán ABC-27.
+          <h2>Thư viện biểu đồ</h2>
 
-          Các hình được tổ chức theo nhóm
-          để thuận tiện cho việc quan sát,
-          so sánh và phân tích dữ liệu.
-        </p>
+          <span>
+            12 biểu đồ · Dữ liệu ABC-27
+          </span>
 
-        <p>
-          Chọn nhóm biểu đồ hoặc nhấn vào
-          từng hình để xem ở kích thước lớn.
-        </p>
+        </div>
+
+        <button
+          type="button"
+          class="abc-gallery__collapse"
+          id="galleryCollapse"
+          aria-controls="abc-gallery-grid"
+          aria-expanded="true"
+        >
+          − Thu gọn
+        </button>
 
       </div>
 
 
       <!-- BỘ LỌC BIỂU ĐỒ -->
+
       <div
         class="abc-gallery__tabs"
         role="group"
@@ -371,11 +380,31 @@
       ></div>
 
 
-      <!-- DANH SÁCH HÌNH GỐC -->
-      <div class="abc-gallery__grid"></div>
+      <!-- TRẠNG THÁI HIỂN THỊ -->
+
+      <div class="abc-gallery__status">
+
+        <span id="galleryCount">
+          Hiển thị 12 / 12 biểu đồ
+        </span>
+
+        <span>
+          ▦ Dạng thẻ
+        </span>
+
+      </div>
+
+
+      <!-- DANH SÁCH 12 BIỂU ĐỒ -->
+
+      <div
+        class="abc-gallery__grid"
+        id="abc-gallery-grid"
+      ></div>
 
 
       <!-- CỬA SỔ PHÓNG TO -->
+
       <dialog
         class="abc-gallery__dialog"
         aria-label="Xem biểu đồ phóng to"
@@ -389,7 +418,6 @@
         </button>
 
         <img
-          src=""
           alt="Biểu đồ chứng khoán ABC-27"
         >
 
@@ -400,9 +428,9 @@
     </section>
 
 
-    <!-- =========================
+    <!-- =====================================
          05. TÍNH NĂNG
-    ========================== -->
+    ====================================== -->
 
     <section
       class="features wrap"
@@ -410,6 +438,7 @@
     >
 
       <div class="section-head">
+
         <span class="eyebrow">
           CÁC TÍNH NĂNG
         </span>
@@ -417,12 +446,14 @@
         <h2>
           Tất cả trong một nền tảng.
         </h2>
+
       </div>
 
 
       <div class="feature-grid">
 
         <!-- PHÂN TÍCH DỮ LIỆU -->
+
         <a
           class="feature feature-purple feature-clickable"
           href="#dashboard"
@@ -453,7 +484,8 @@
         </a>
 
 
-        <!-- BIỂU ĐỒ TƯƠNG TÁC -->
+        <!-- THƯ VIỆN BIỂU ĐỒ -->
+
         <a
           class="feature feature-clickable"
           href="#abc-gallery"
@@ -484,6 +516,7 @@
 
 
         <!-- VIDEO MÔ PHỎNG -->
+
         <a
           class="feature feature-clickable"
           href="#video"
@@ -512,9 +545,9 @@
     </section>
 
 
-    <!-- =========================
+    <!-- =====================================
          06. VIDEO PYTHON
-    ========================== -->
+    ====================================== -->
 
     <section
       class="video-section wrap"
@@ -537,6 +570,7 @@
       <div class="video-layout">
 
         <!-- VIDEO -->
+
         <div class="video-frame">
 
           <video
@@ -559,6 +593,7 @@
 
 
         <!-- THÔNG TIN VIDEO -->
+
         <div class="video-info">
 
           <h3>
@@ -610,9 +645,9 @@
     </section>
 
 
-    <!-- =========================
+    <!-- =====================================
          07. BANNER CUỐI
-    ========================== -->
+    ====================================== -->
 
     <section class="cta wrap">
 
@@ -645,9 +680,9 @@
     </section>
 
 
-    <!-- =========================
+    <!-- =====================================
          08. LỜI CẢM ƠN
-    ========================== -->
+    ====================================== -->
 
     <section
       class="academic-ending wrap"
@@ -718,9 +753,9 @@
     </section>
 
 
-    <!-- =========================
+    <!-- =====================================
          09. GIỚI THIỆU TÁC GIẢ
-    ========================== -->
+    ====================================== -->
 
     <section
       class="author-section wrap"
@@ -759,7 +794,6 @@
 
           </div>
 
-
           <span class="author-eyebrow">
             THÔNG TIN TÁC GIẢ
           </span>
@@ -785,6 +819,7 @@
 
 
         <!-- THÔNG TIN HỌC THUẬT -->
+
         <div class="author-details">
 
           <div class="author-detail-row">
@@ -813,6 +848,7 @@
 
 
         <!-- THÔNG ĐIỆP TÁC GIẢ -->
+
         <div class="author-message">
 
           <p>
@@ -828,6 +864,7 @@
 
 
         <!-- CHỮ KÝ -->
+
         <div class="author-signature">
 
           <span>
@@ -847,9 +884,9 @@
   </main>
 
 
-  <!-- =========================
+  <!-- =====================================
        FOOTER
-  ========================== -->
+  ====================================== -->
 
   <footer class="footer wrap">
 
@@ -867,10 +904,6 @@
     </a>
 
   </footer>
-
-
-  <!-- JAVASCRIPT THƯ VIỆN BIỂU ĐỒ -->
-  <script src="gallery.js" defer></script>
 
 </body>
 </html>
