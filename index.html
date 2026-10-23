@@ -23,19 +23,19 @@
   <link rel="stylesheet" href="style.css">
 
   <!-- CSS THƯ VIỆN BIỂU ĐỒ MẪU 2 -->
-  <link rel="stylesheet" href="gallery.css?v=6">
+  <link rel="stylesheet" href="gallery.css?v=9">
 
-  <!-- CHART.JS -->
+  <!-- THƯ VIỆN CHART.JS -->
   <script
     src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"
     defer
   ></script>
 
-  <!-- JAVASCRIPT DASHBOARD -->
-  <script src="script.js" defer></script>
+  <!-- JAVASCRIPT DASHBOARD VÀ BIỂU ĐỒ ĐẦU TRANG -->
+  <script src="script.js?v=9" defer></script>
 
-  <!-- JAVASCRIPT THƯ VIỆN BIỂU ĐỒ -->
-  <script src="gallery.js?v=6" defer></script>
+  <!-- JAVASCRIPT THƯ VIỆN 12 BIỂU ĐỒ -->
+  <script src="gallery.js?v=9" defer></script>
 
 </head>
 
@@ -114,6 +114,8 @@
         <div class="orb orb-one"></div>
         <div class="orb orb-two"></div>
 
+        <!-- BIỂU ĐỒ ĐẦU TRANG -->
+
         <div class="hero-chart">
 
           <div class="chart-caption">
@@ -121,12 +123,17 @@
           </div>
 
           <div class="hero-canvas-wrap">
-            <canvas id="heroChart"></canvas>
+            <canvas
+              id="heroChart"
+              aria-label="Biểu đồ tổng quan biến động giá ABC-27"
+              role="img"
+            ></canvas>
           </div>
 
           <p
             class="chart-placeholder"
             id="heroMessage"
+            aria-live="polite"
           >
             Đang tải biểu đồ...
           </p>
@@ -212,6 +219,8 @@
           <li>✓ Mô phỏng bằng Python</li>
         </ul>
 
+        <!-- TẢI CSV THỦ CÔNG -->
+
         <label class="btn btn-blue upload">
           ↑ Chọn file abc-27.csv
 
@@ -223,7 +232,11 @@
           >
         </label>
 
-        <p class="hint" id="status">
+        <p
+          class="hint"
+          id="status"
+          aria-live="polite"
+        >
           Đang khởi động Dashboard...
         </p>
 
@@ -279,7 +292,7 @@
         </div>
 
 
-        <!-- BIỂU ĐỒ GIÁ -->
+        <!-- BIỂU ĐỒ GIÁ DASHBOARD -->
 
         <div class="chart-card">
 
@@ -300,7 +313,13 @@
           </div>
 
           <div class="main-chart">
-            <canvas id="priceChart"></canvas>
+
+            <canvas
+              id="priceChart"
+              aria-label="Biểu đồ giá đóng cửa ABC-27"
+              role="img"
+            ></canvas>
+
           </div>
 
         </div>
@@ -384,7 +403,10 @@
 
       <div class="abc-gallery__status">
 
-        <span id="galleryCount">
+        <span
+          id="galleryCount"
+          aria-live="polite"
+        >
           Hiển thị 12 / 12 biểu đồ
         </span>
 
@@ -395,7 +417,7 @@
       </div>
 
 
-      <!-- DANH SÁCH 12 BIỂU ĐỒ -->
+      <!-- DANH SÁCH BIỂU ĐỒ -->
 
       <div
         class="abc-gallery__grid"
@@ -417,9 +439,7 @@
           ✕ Đóng
         </button>
 
-        <img
-          alt="Biểu đồ chứng khoán ABC-27"
-        >
+        <img alt="Biểu đồ chứng khoán ABC-27">
 
         <figcaption></figcaption>
 
@@ -625,6 +645,7 @@
           <p
             class="hint"
             id="videoStatus"
+            aria-live="polite"
           >
             Đang kiểm tra video...
           </p>
