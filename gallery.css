@@ -1,0 +1,208 @@
+
+/* ==========================================
+   THU VIEN BIEU DO ABC-27
+========================================== */
+
+.abc-gallery {
+  padding-block: 78px;
+  color: #182444;
+}
+
+.abc-gallery * {
+  box-sizing: border-box;
+}
+
+/* TIEU DE */
+
+.abc-gallery__intro {
+  text-align: center;
+  max-width: 760px;
+  margin: 0 auto 28px;
+}
+
+.abc-gallery__eyebrow {
+  color: #5968db;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+}
+
+.abc-gallery__intro h2 {
+  font-size: clamp(27px, 4vw, 43px);
+  line-height: 1.2;
+  margin: 12px 0;
+}
+
+.abc-gallery__intro p {
+  color: #65728b;
+  line-height: 1.7;
+}
+
+/* CAC NUT LOC */
+
+.abc-gallery__tabs {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 26px auto 32px;
+}
+
+.abc-gallery__tab {
+  border: 1px solid #dfe4f4;
+  background: #ffffff;
+  border-radius: 999px;
+  padding: 10px 15px;
+  cursor: pointer;
+  color: #44506b;
+  font: inherit;
+  font-weight: 650;
+}
+
+.abc-gallery__tab:hover {
+  background: #eef1ff;
+}
+
+.abc-gallery__tab[aria-pressed="true"] {
+  background: #5263d9;
+  color: #ffffff;
+  border-color: #5263d9;
+}
+
+/* BO CUC HINH ANH */
+
+.abc-gallery__grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 22px;
+}
+
+.abc-gallery__card {
+  margin: 0;
+  min-width: 0;
+  background: #ffffff;
+  border: 1px solid #e3e8f4;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 9px 24px rgba(26, 44, 96, 0.05);
+}
+
+.abc-gallery__card[data-wide="true"] {
+  grid-column: 1 / -1;
+}
+
+/* HINH BIEU DO */
+
+.abc-gallery__zoom {
+  border: 0;
+  background: #f8faff;
+  cursor: zoom-in;
+  display: block;
+  width: 100%;
+  padding: 14px;
+}
+
+.abc-gallery__zoom img {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 390px;
+  object-fit: contain;
+}
+
+.abc-gallery__card[data-wide="true"]
+.abc-gallery__zoom img {
+  max-height: 520px;
+}
+
+/* THONG TIN BIEU DO */
+
+.abc-gallery__info {
+  padding: 16px 20px 21px;
+}
+
+.abc-gallery__meta {
+  font-size: 12px;
+  color: #5b68c9;
+  font-weight: 750;
+}
+
+.abc-gallery__info h3 {
+  margin: 7px 0;
+  font-size: 18px;
+  color: #1e2b4a;
+}
+
+.abc-gallery__info p {
+  margin: 0;
+  color: #6a7690;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+/* AN CAC HINH KHONG THUOC BO LOC */
+
+.abc-gallery__card[hidden] {
+  display: none !important;
+}
+
+/* CUA SO PHONG TO */
+
+.abc-gallery__dialog {
+  border: 0;
+  border-radius: 16px;
+  max-width: min(1100px, 96vw);
+  max-height: 94vh;
+  padding: 16px;
+  background: #ffffff;
+  color: #17233e;
+}
+
+.abc-gallery__dialog::backdrop {
+  background: rgba(9, 16, 35, 0.82);
+}
+
+.abc-gallery__dialog img {
+  display: block;
+  max-width: 100%;
+  max-height: 78vh;
+  object-fit: contain;
+  margin: auto;
+}
+
+.abc-gallery__dialog figcaption {
+  text-align: center;
+  margin: 10px 0 0;
+  font-weight: 650;
+}
+
+.abc-gallery__close {
+  display: block;
+  margin: 0 0 10px auto;
+  border: 0;
+  background: #e9edfa;
+  padding: 8px 13px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 15px;
+}
+
+/* HIEN THI TREN DIEN THOAI */
+
+@media (max-width: 720px) {
+  .abc-gallery {
+    padding-block: 48px;
+  }
+
+  .abc-gallery__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .abc-gallery__card[data-wide="true"] {
+    grid-column: auto;
+  }
+
+  .abc-gallery__zoom img {
+    max-height: 310px;
+  }
+}
