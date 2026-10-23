@@ -43,3 +43,14 @@
 @media(max-width:900px){.abc-gallery__grid{gap:16px}.abc-gallery__open img,.abc-gallery__zoom img{height:210px}.abc-gallery__card--wide .abc-gallery__open img,.abc-gallery__card--wide .abc-gallery__zoom img{height:310px}}
 @media(max-width:650px){.abc-gallery{padding-block:45px}.abc-gallery__heading h2{font-size:30px}.abc-gallery__collapse{padding:10px 15px;font-size:12px}.abc-gallery__tabs{gap:8px;padding-bottom:18px}.abc-gallery__tabs button{min-height:36px;padding:9px 13px;font-size:12px}.abc-gallery__grid{grid-template-columns:1fr;gap:16px}.abc-gallery__card--wide{grid-column:auto}.abc-gallery__open img,.abc-gallery__zoom img,.abc-gallery__card--wide .abc-gallery__open img,.abc-gallery__card--wide .abc-gallery__zoom img{height:auto;max-height:300px;padding:12px}.abc-gallery__content,.abc-gallery__info{padding:15px 17px 19px}.abc-gallery__content h3,.abc-gallery__info h3{font-size:16px}.abc-gallery__dialog{max-width:96vw;padding:12px}}
 @media(prefers-reduced-motion:reduce){.abc-gallery__card,.abc-gallery__open img,.abc-gallery__tabs button,.abc-gallery__collapse{transition:none}.abc-gallery__card:hover,.abc-gallery__card:hover img,.abc-gallery__collapse:hover{transform:none}}
+
+/* Ưu tiên nút Thu gọn, kể cả khi style.css cũ còn ẩn */
+#abc-gallery #galleryCollapse.abc-gallery__collapse {
+  display: inline-flex !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  position: relative;
+  z-index: 2;
+}
+#abc-gallery #abc-gallery-grid.is-collapsed,
+#abc-gallery #abc-gallery-grid[hidden] { display: none !important; }

@@ -22,7 +22,22 @@
     const grid = document.getElementById("abc-gallery-grid");
     const count = document.getElementById("galleryCount");
     const dialog = document.querySelector(".abc-gallery__dialog");
-    const collapse = document.getElementById("galleryCollapse");
+    // Tự tạo nút khi trang HTML đang dùng phiên bản cũ.
+    const header = document.querySelector(".abc-gallery__header");
+    let collapse = document.getElementById("galleryCollapse");
+    if (!collapse && header) {
+      collapse = document.createElement("button");
+      collapse.type = "button";
+      collapse.id = "galleryCollapse";
+      collapse.className = "abc-gallery__collapse";
+      collapse.setAttribute("aria-controls", "abc-gallery-grid");
+      header.appendChild(collapse);
+    }
+    if (collapse && header && collapse.parentElement !== header) header.appendChild(collapse);
+    if (collapse) {
+      collapse.style.setProperty("display", "inline-flex", "important");
+      collapse.style.setProperty("visibility", "visible", "important");
+    }
     if (!tabs || !grid) return;
     let selected = "Tất cả";
     let collapsed = false;
