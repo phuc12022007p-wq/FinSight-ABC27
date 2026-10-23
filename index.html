@@ -4,37 +4,32 @@
 
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
 
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
-  >
-
-  <meta
-    name="description"
-    content="Góc Nhìn Dữ Liệu - Phân tích và trực quan hóa dữ liệu chứng khoán ABC-27"
-  >
+  <meta name="description"
+        content="Góc Nhìn Dữ Liệu - Phân tích và trực quan hóa dữ liệu chứng khoán ABC-27">
 
   <title>
     Góc Nhìn Dữ Liệu | Phân tích chứng khoán ABC-27
   </title>
 
   <!-- CSS CHÍNH -->
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css?v=14">
 
-  <!-- CSS THƯ VIỆN BIỂU ĐỒ MẪU 2 -->
+  <!-- CSS THƯ VIỆN BIỂU ĐỒ -->
   <link rel="stylesheet" href="gallery.css?v=9">
 
-  <!-- THƯ VIỆN CHART.JS -->
+  <!-- CHART.JS -->
   <script
     src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"
-    defer
-  ></script>
+    defer>
+  </script>
 
-  <!-- JAVASCRIPT DASHBOARD VÀ BIỂU ĐỒ ĐẦU TRANG -->
-  <script src="script.js?v=9" defer></script>
+  <!-- JAVASCRIPT CHÍNH -->
+  <script src="script.js?v=14" defer></script>
 
-  <!-- JAVASCRIPT THƯ VIỆN 12 BIỂU ĐỒ -->
+  <!-- JAVASCRIPT THƯ VIỆN BIỂU ĐỒ -->
   <script src="gallery.js?v=9" defer></script>
 
 </head>
@@ -109,12 +104,12 @@
 
       </div>
 
+      <!-- BIỂU ĐỒ ĐẦU TRANG -->
+
       <div class="hero-visual">
 
         <div class="orb orb-one"></div>
         <div class="orb orb-two"></div>
-
-        <!-- BIỂU ĐỒ ĐẦU TRANG -->
 
         <div class="hero-chart">
 
@@ -122,19 +117,21 @@
             ABC-27 · TỔNG QUAN BIẾN ĐỘNG
           </div>
 
-          <div class="hero-canvas-wrap">
+          <div class="hero-canvas-wrap"
+               style="position: relative;">
+
             <canvas
               id="heroChart"
               aria-label="Biểu đồ tổng quan biến động giá ABC-27"
-              role="img"
-            ></canvas>
+              role="img">
+            </canvas>
+
           </div>
 
           <p
             class="chart-placeholder"
             id="heroMessage"
-            aria-live="polite"
-          >
+            aria-live="polite">
             Đang tải biểu đồ...
           </p>
 
@@ -190,10 +187,7 @@
          03. DASHBOARD
     ====================================== -->
 
-    <section
-      class="overview wrap"
-      id="dashboard"
-    >
+    <section class="overview wrap" id="dashboard">
 
       <div class="overview-copy">
 
@@ -219,31 +213,31 @@
           <li>✓ Mô phỏng bằng Python</li>
         </ul>
 
-        <!-- TẢI CSV THỦ CÔNG -->
+        <!-- TẢI FILE CSV -->
 
         <label class="btn btn-blue upload">
+
           ↑ Chọn file abc-27.csv
 
           <input
             id="csvInput"
             type="file"
             accept=".csv,text/csv"
-            hidden
-          >
+            hidden>
+
         </label>
 
         <p
           class="hint"
           id="status"
-          aria-live="polite"
-        >
+          aria-live="polite">
           Đang khởi động Dashboard...
         </p>
 
       </div>
 
 
-      <!-- BẢNG ĐIỀU KHIỂN -->
+      <!-- DASHBOARD CHÍNH -->
 
       <div class="dashboard">
 
@@ -261,7 +255,7 @@
         </div>
 
 
-        <!-- THỐNG KÊ -->
+        <!-- BỐN CHỈ SỐ THỐNG KÊ -->
 
         <div class="stats">
 
@@ -292,18 +286,24 @@
         </div>
 
 
-        <!-- BIỂU ĐỒ GIÁ DASHBOARD -->
+        <!-- =================================
+             BIỂU ĐỒ GIÁ TƯƠNG TÁC
+        ================================== -->
 
         <div class="chart-card">
 
           <div class="chart-heading">
 
             <div>
-              <h3>Diễn biến giá đóng cửa</h3>
+
+              <h3>
+                Diễn biến giá đóng cửa
+              </h3>
 
               <small>
                 ABC-27 · Mỗi nến đại diện 5 ngày
               </small>
+
             </div>
 
             <span class="chart-tag">
@@ -312,15 +312,45 @@
 
           </div>
 
-          <div class="main-chart">
+
+          <!--
+            SCRIPT.JS TỰ TẠO TOOLTIP TẠI ĐÂY
+
+            Khi rê chuột vào nến:
+            - Hiện nến và khoảng ngày
+            - Giá đóng cửa
+            - Giá mở cửa
+            - Giá cao nhất
+            - Giá thấp nhất
+            - Đường dọc nét đứt
+          -->
+
+          <div
+            class="main-chart"
+            style="position: relative;">
 
             <canvas
               id="priceChart"
-              aria-label="Biểu đồ giá đóng cửa ABC-27"
-              role="img"
-            ></canvas>
+              aria-label="Biểu đồ giá đóng cửa ABC-27. Chạm hoặc rê chuột để xem thông tin OHLC"
+              role="img">
+            </canvas>
 
           </div>
+
+
+          <!-- HƯỚNG DẪN TƯƠNG TÁC -->
+
+          <p
+            class="abc-chart-hint"
+            style="
+              text-align: center;
+              color: #8c9db6;
+              font-size: 13px;
+              margin: 14px 0 0;
+              line-height: 1.6;
+            ">
+            Chạm hoặc rê chuột để xem số liệu từng nến.
+          </p>
 
         </div>
 
@@ -355,13 +385,9 @@
 
     <!-- =====================================
          04. THƯ VIỆN BIỂU ĐỒ
-         MẪU 2 - DASHBOARD
     ====================================== -->
 
-    <section
-      class="abc-gallery wrap"
-      id="abc-gallery"
-    >
+    <section class="abc-gallery wrap" id="abc-gallery">
 
       <!-- TIÊU ĐỀ VÀ NÚT THU GỌN -->
 
@@ -382,8 +408,7 @@
           class="abc-gallery__collapse"
           id="galleryCollapse"
           aria-controls="abc-gallery-grid"
-          aria-expanded="true"
-        >
+          aria-expanded="true">
           − Thu gọn
         </button>
 
@@ -395,47 +420,42 @@
       <div
         class="abc-gallery__tabs"
         role="group"
-        aria-label="Lọc biểu đồ theo chủ đề"
-      ></div>
+        aria-label="Lọc biểu đồ theo chủ đề">
+      </div>
 
 
-      <!-- TRẠNG THÁI HIỂN THỊ -->
+      <!-- TRẠNG THÁI -->
 
       <div class="abc-gallery__status">
 
         <span
           id="galleryCount"
-          aria-live="polite"
-        >
+          aria-live="polite">
           Hiển thị 12 / 12 biểu đồ
         </span>
 
-        <span>
-          ▦ Dạng thẻ
-        </span>
+        <span>▦ Dạng thẻ</span>
 
       </div>
 
 
-      <!-- DANH SÁCH BIỂU ĐỒ -->
+      <!-- DANH SÁCH 12 BIỂU ĐỒ -->
 
       <div
         class="abc-gallery__grid"
-        id="abc-gallery-grid"
-      ></div>
+        id="abc-gallery-grid">
+      </div>
 
 
       <!-- CỬA SỔ PHÓNG TO -->
 
       <dialog
         class="abc-gallery__dialog"
-        aria-label="Xem biểu đồ phóng to"
-      >
+        aria-label="Xem biểu đồ phóng to">
 
         <button
           type="button"
-          class="abc-gallery__close"
-        >
+          class="abc-gallery__close">
           ✕ Đóng
         </button>
 
@@ -452,10 +472,7 @@
          05. TÍNH NĂNG
     ====================================== -->
 
-    <section
-      class="features wrap"
-      id="features"
-    >
+    <section class="features wrap" id="features">
 
       <div class="section-head">
 
@@ -469,15 +486,13 @@
 
       </div>
 
-
       <div class="feature-grid">
 
         <!-- PHÂN TÍCH DỮ LIỆU -->
 
         <a
           class="feature feature-purple feature-clickable"
-          href="#dashboard"
-        >
+          href="#dashboard">
 
           <span class="feature-icon">
             ◈
@@ -508,8 +523,7 @@
 
         <a
           class="feature feature-clickable"
-          href="#abc-gallery"
-        >
+          href="#abc-gallery">
 
           <span class="feature-icon">
             ⌁
@@ -539,8 +553,7 @@
 
         <a
           class="feature feature-clickable"
-          href="#video"
-        >
+          href="#video">
 
           <span class="feature-icon">
             ▷
@@ -569,10 +582,7 @@
          06. VIDEO PYTHON
     ====================================== -->
 
-    <section
-      class="video-section wrap"
-      id="video"
-    >
+    <section class="video-section wrap" id="video">
 
       <div class="section-head">
 
@@ -597,13 +607,11 @@
             id="stockVideo"
             controls
             preload="metadata"
-            playsinline
-          >
+            playsinline>
 
             <source
               src="videos/stock_simulation_2min.mp4"
-              type="video/mp4"
-            >
+              type="video/mp4">
 
             Trình duyệt không hỗ trợ video MP4.
 
@@ -634,7 +642,7 @@
 
           <p>
             <strong>Dữ liệu:</strong>
-            365 ngày giao dịch
+            365 ngày dữ liệu
           </p>
 
           <p>
@@ -645,8 +653,7 @@
           <p
             class="hint"
             id="videoStatus"
-            aria-live="polite"
-          >
+            aria-live="polite">
             Đang kiểm tra video...
           </p>
 
@@ -654,8 +661,7 @@
             class="btn btn-blue"
             href="videos/stock_simulation_2min.mp4"
             target="_blank"
-            rel="noopener"
-          >
+            rel="noopener">
             ↗ Mở video trong tab mới
           </a>
 
@@ -689,8 +695,7 @@
 
         <a
           class="btn btn-blue"
-          href="#dashboard"
-        >
+          href="#dashboard">
           Khám phá Dashboard →
         </a>
 
@@ -707,8 +712,7 @@
 
     <section
       class="academic-ending wrap"
-      id="conclusion"
-    >
+      id="conclusion">
 
       <div class="academic-ending-panel">
 
@@ -716,8 +720,7 @@
 
           <div
             class="academic-ending-heart"
-            aria-hidden="true"
-          >
+            aria-hidden="true">
             ♥
           </div>
 
@@ -748,20 +751,17 @@
 
           </div>
 
-
           <div class="academic-ending-actions">
 
             <a
               class="btn btn-dark"
-              href="#home"
-            >
+              href="#home">
               ↑ Trở về đầu trang
             </a>
 
             <a
               class="btn btn-outline"
-              href="#dashboard"
-            >
+              href="#dashboard">
               Khám phá lại dữ liệu →
             </a>
 
@@ -775,13 +775,12 @@
 
 
     <!-- =====================================
-         09. GIỚI THIỆU TÁC GIẢ
+         09. THÔNG TIN TÁC GIẢ
     ====================================== -->
 
     <section
       class="author-section wrap"
-      id="author"
-    >
+      id="author">
 
       <div class="author-card">
 
@@ -789,8 +788,7 @@
 
           <div
             class="author-icon"
-            aria-hidden="true"
-          >
+            aria-hidden="true">
 
             <svg
               viewBox="0 0 24 24"
@@ -798,18 +796,17 @@
               stroke="currentColor"
               stroke-width="1.7"
               stroke-linecap="round"
-              stroke-linejoin="round"
-            >
+              stroke-linejoin="round">
 
               <path
-                d="m2 10 10-5 10 5-10 5-10-5Z"
-              />
+                d="m2 10 10-5 10 5-10 5-10-5Z">
+              </path>
 
               <path
-                d="M6 12v5c3.7 2.8 8.3 2.8 12 0v-5"
-              />
+                d="M6 12v5c3.7 2.8 8.3 2.8 12 0v-5">
+              </path>
 
-              <path d="M22 10v7"/>
+              <path d="M22 10v7"></path>
 
             </svg>
 
