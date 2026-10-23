@@ -1,10 +1,10 @@
 
 /* ==========================================
-   THU VIEN BIEU DO ABC-27
+   ABC-27 DASHBOARD GALLERY - MẪU 2
 ========================================== */
 
 .abc-gallery {
-  padding-block: 78px;
+  padding-block: 70px;
   color: #182444;
 }
 
@@ -12,64 +12,111 @@
   box-sizing: border-box;
 }
 
-/* TIEU DE */
+/* HEADER */
 
-.abc-gallery__intro {
-  text-align: center;
-  max-width: 760px;
-  margin: 0 auto 28px;
+.abc-gallery__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-bottom: 24px;
 }
 
-.abc-gallery__eyebrow {
-  color: #5968db;
-  font-size: 12px;
-  font-weight: 800;
-  letter-spacing: 0.16em;
-}
-
-.abc-gallery__intro h2 {
-  font-size: clamp(27px, 4vw, 43px);
+.abc-gallery__heading h2 {
+  margin: 0;
+  font-size: clamp(30px, 4vw, 44px);
   line-height: 1.2;
-  margin: 12px 0;
+  font-weight: 800;
+  color: #182444;
 }
 
-.abc-gallery__intro p {
-  color: #65728b;
-  line-height: 1.7;
+.abc-gallery__heading span {
+  display: block;
+  margin-top: 8px;
+  font-size: 14px;
+  color: #7a879f;
 }
 
-/* CAC NUT LOC */
+/* NÚT THU GỌN */
+
+.abc-gallery__collapse {
+  border: 0;
+  border-radius: 12px;
+  padding: 12px 22px;
+  background: #5263d9;
+  color: #ffffff;
+  font: inherit;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.abc-gallery__collapse:hover {
+  background: #394bc2;
+  transform: translateY(-2px);
+}
+
+.abc-gallery__collapse:focus-visible,
+.abc-gallery__filter:focus-visible,
+.abc-gallery__zoom:focus-visible {
+  outline: 3px solid #a8b4ff;
+  outline-offset: 3px;
+}
+
+/* BỘ LỌC */
 
 .abc-gallery__tabs {
   display: flex;
-  gap: 8px;
   flex-wrap: wrap;
-  justify-content: center;
-  margin: 26px auto 32px;
+  align-items: center;
+  gap: 10px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid #e5eaf3;
 }
 
-.abc-gallery__tab {
-  border: 1px solid #dfe4f4;
+.abc-gallery__filter {
+  border: 1px solid #e0e6f1;
   background: #ffffff;
+  color: #56647e;
   border-radius: 999px;
-  padding: 10px 15px;
-  cursor: pointer;
-  color: #44506b;
+  padding: 10px 17px;
   font: inherit;
+  font-size: 13px;
   font-weight: 650;
+  cursor: pointer;
+  transition: 0.2s ease;
 }
 
-.abc-gallery__tab:hover {
-  background: #eef1ff;
+.abc-gallery__filter:hover {
+  background: #f0f3ff;
+  border-color: #bac5fa;
+  color: #5263d9;
 }
 
-.abc-gallery__tab[aria-pressed="true"] {
+.abc-gallery__filter.active {
   background: #5263d9;
-  color: #ffffff;
   border-color: #5263d9;
+  color: #ffffff;
+  box-shadow: 0 4px 12px rgba(82, 99, 217, 0.16);
 }
 
-/* BO CUC HINH ANH */
+/* THANH THÔNG TIN */
+
+.abc-gallery__status {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin: 20px 0;
+  color: #7a879f;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+/* LƯỚI BIỂU ĐỒ */
 
 .abc-gallery__grid {
   display: grid;
@@ -77,132 +124,204 @@
   gap: 22px;
 }
 
+.abc-gallery__grid[hidden] {
+  display: none !important;
+}
+
+/* THẺ BIỂU ĐỒ */
+
 .abc-gallery__card {
   margin: 0;
   min-width: 0;
-  background: #ffffff;
-  border: 1px solid #e3e8f4;
-  border-radius: 20px;
   overflow: hidden;
-  box-shadow: 0 9px 24px rgba(26, 44, 96, 0.05);
+  border: 1px solid #e1e7f2;
+  border-radius: 18px;
+  background: #ffffff;
+  box-shadow: 0 5px 20px rgba(25, 44, 86, 0.045);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-.abc-gallery__card[data-wide="true"] {
-  grid-column: 1 / -1;
+.abc-gallery__card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 30px rgba(25, 44, 86, 0.10);
 }
 
-/* HINH BIEU DO */
+/* BIỂU ĐỒ RỘNG */
+
+.abc-gallery__card--wide {
+  grid-column: span 2;
+}
+
+/* KHU VỰC ẢNH */
 
 .abc-gallery__zoom {
-  border: 0;
-  background: #f8faff;
-  cursor: zoom-in;
   display: block;
   width: 100%;
-  padding: 14px;
+  padding: 16px;
+  background: #f7f9fd;
+  border: 0;
+  cursor: zoom-in;
 }
 
 .abc-gallery__zoom img {
   display: block;
   width: 100%;
-  height: auto;
-  max-height: 390px;
+  height: 260px;
   object-fit: contain;
 }
 
-.abc-gallery__card[data-wide="true"]
-.abc-gallery__zoom img {
-  max-height: 520px;
+.abc-gallery__card--wide .abc-gallery__zoom img {
+  height: 390px;
 }
 
-/* THONG TIN BIEU DO */
+/* THÔNG TIN BIỂU ĐỒ */
 
 .abc-gallery__info {
-  padding: 16px 20px 21px;
+  padding: 18px 22px 22px;
 }
 
 .abc-gallery__meta {
   font-size: 12px;
-  color: #5b68c9;
   font-weight: 750;
+  color: #5263d9;
+  margin-bottom: 9px;
 }
 
 .abc-gallery__info h3 {
-  margin: 7px 0;
+  margin: 0 0 8px;
+  color: #1c2a48;
   font-size: 18px;
-  color: #1e2b4a;
+  line-height: 1.4;
 }
 
 .abc-gallery__info p {
   margin: 0;
-  color: #6a7690;
   font-size: 14px;
-  line-height: 1.6;
+  color: #748098;
+  line-height: 1.65;
 }
 
-/* AN CAC HINH KHONG THUOC BO LOC */
+/* THÔNG BÁO LỖI ẢNH */
 
-.abc-gallery__card[hidden] {
-  display: none !important;
+.abc-gallery__error {
+  padding: 24px;
+  color: #c0392b;
+  font-size: 14px;
 }
 
-/* CUA SO PHONG TO */
+/* CỬA SỔ PHÓNG TO */
 
 .abc-gallery__dialog {
   border: 0;
-  border-radius: 16px;
+  border-radius: 18px;
   max-width: min(1100px, 96vw);
   max-height: 94vh;
-  padding: 16px;
+  padding: 18px;
   background: #ffffff;
-  color: #17233e;
+  color: #182444;
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.25);
 }
 
 .abc-gallery__dialog::backdrop {
-  background: rgba(9, 16, 35, 0.82);
+  background: rgba(8, 16, 34, 0.82);
 }
 
 .abc-gallery__dialog img {
   display: block;
   max-width: 100%;
-  max-height: 78vh;
+  max-height: 76vh;
   object-fit: contain;
   margin: auto;
 }
 
 .abc-gallery__dialog figcaption {
   text-align: center;
-  margin: 10px 0 0;
+  margin-top: 14px;
+  font-size: 15px;
   font-weight: 650;
 }
 
 .abc-gallery__close {
   display: block;
-  margin: 0 0 10px auto;
+  margin: 0 0 14px auto;
+  padding: 10px 16px;
   border: 0;
-  background: #e9edfa;
-  padding: 8px 13px;
   border-radius: 10px;
+  background: #edf0f8;
+  color: #273654;
+  font: inherit;
+  font-size: 14px;
+  font-weight: 700;
   cursor: pointer;
-  font-size: 15px;
 }
 
-/* HIEN THI TREN DIEN THOAI */
+/* RESPONSIVE - TABLET */
 
-@media (max-width: 720px) {
+@media (max-width: 900px) {
+
+  .abc-gallery__grid {
+    gap: 16px;
+  }
+
+  .abc-gallery__zoom img {
+    height: 210px;
+  }
+
+  .abc-gallery__card--wide .abc-gallery__zoom img {
+    height: 310px;
+  }
+
+}
+
+/* RESPONSIVE - MOBILE */
+
+@media (max-width: 650px) {
+
   .abc-gallery {
-    padding-block: 48px;
+    padding-block: 45px;
+  }
+
+  .abc-gallery__header {
+    align-items: flex-start;
+  }
+
+  .abc-gallery__heading h2 {
+    font-size: 30px;
+  }
+
+  .abc-gallery__collapse {
+    padding: 10px 16px;
+  }
+
+  .abc-gallery__tabs {
+    gap: 8px;
+  }
+
+  .abc-gallery__filter {
+    padding: 9px 13px;
+    font-size: 12px;
   }
 
   .abc-gallery__grid {
     grid-template-columns: 1fr;
   }
 
-  .abc-gallery__card[data-wide="true"] {
+  .abc-gallery__card--wide {
     grid-column: auto;
   }
 
-  .abc-gallery__zoom img {
-    max-height: 310px;
+  .abc-gallery__zoom img,
+  .abc-gallery__card--wide .abc-gallery__zoom img {
+    height: auto;
+    max-height: 300px;
   }
+
+  .abc-gallery__info {
+    padding: 15px 17px 19px;
+  }
+
+  .abc-gallery__info h3 {
+    font-size: 16px;
+  }
+
 }
