@@ -1,6 +1,16 @@
 
 /* ==========================================
    ABC-27 DASHBOARD GALLERY - MẪU 2
+   PHIÊN BẢN HOÀN CHỈNH
+   - Hiển thị 12 biểu đồ
+   - Bộ lọc theo chủ đề
+   - Nhấn vào hình để phóng to
+   - Không có nút thu gọn
+   - Responsive máy tính và điện thoại
+========================================== */
+
+/* ==========================================
+   1. GIAO DIỆN CHUNG
 ========================================== */
 
 .abc-gallery {
@@ -12,7 +22,9 @@
   box-sizing: border-box;
 }
 
-/* HEADER */
+/* ==========================================
+   2. HEADER
+========================================== */
 
 .abc-gallery__header {
   display: flex;
@@ -38,34 +50,15 @@
   color: #7a879f;
 }
 
-/* NÚT THU GỌN */
+/* Không sử dụng nút thu gọn */
 
 .abc-gallery__collapse {
-  border: 0;
-  border-radius: 12px;
-  padding: 12px 22px;
-  background: #5263d9;
-  color: #ffffff;
-  font: inherit;
-  font-size: 14px;
-  font-weight: 700;
-  cursor: pointer;
-  transition: 0.2s ease;
+  display: none !important;
 }
 
-.abc-gallery__collapse:hover {
-  background: #394bc2;
-  transform: translateY(-2px);
-}
-
-.abc-gallery__collapse:focus-visible,
-.abc-gallery__filter:focus-visible,
-.abc-gallery__zoom:focus-visible {
-  outline: 3px solid #a8b4ff;
-  outline-offset: 3px;
-}
-
-/* BỘ LỌC */
+/* ==========================================
+   3. BỘ LỌC BIỂU ĐỒ
+========================================== */
 
 .abc-gallery__tabs {
   display: flex;
@@ -76,7 +69,7 @@
   border-bottom: 1px solid #e5eaf3;
 }
 
-.abc-gallery__filter {
+.abc-gallery__tab {
   border: 1px solid #e0e6f1;
   background: #ffffff;
   color: #56647e;
@@ -86,23 +79,31 @@
   font-size: 13px;
   font-weight: 650;
   cursor: pointer;
-  transition: 0.2s ease;
+  transition: all 0.2s ease;
 }
 
-.abc-gallery__filter:hover {
+.abc-gallery__tab:hover {
   background: #f0f3ff;
   border-color: #bac5fa;
   color: #5263d9;
+  transform: translateY(-1px);
 }
 
-.abc-gallery__filter.active {
+.abc-gallery__tab.active {
   background: #5263d9;
   border-color: #5263d9;
   color: #ffffff;
   box-shadow: 0 4px 12px rgba(82, 99, 217, 0.16);
 }
 
-/* THANH THÔNG TIN */
+.abc-gallery__tab:focus-visible {
+  outline: 3px solid #a8b4ff;
+  outline-offset: 3px;
+}
+
+/* ==========================================
+   4. THANH THÔNG TIN
+========================================== */
 
 .abc-gallery__status {
   display: flex;
@@ -116,19 +117,27 @@
   font-weight: 600;
 }
 
-/* LƯỚI BIỂU ĐỒ */
+/* ==========================================
+   5. LƯỚI BIỂU ĐỒ
+========================================== */
 
 .abc-gallery__grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 22px;
+  visibility: visible;
+  opacity: 1;
 }
+
+/* Không cho CSS cũ ẩn thư viện */
 
 .abc-gallery__grid[hidden] {
-  display: none !important;
+  display: grid !important;
 }
 
-/* THẺ BIỂU ĐỒ */
+/* ==========================================
+   6. THẺ BIỂU ĐỒ
+========================================== */
 
 .abc-gallery__card {
   margin: 0;
@@ -138,7 +147,9 @@
   border-radius: 18px;
   background: #ffffff;
   box-shadow: 0 5px 20px rgba(25, 44, 86, 0.045);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
 .abc-gallery__card:hover {
@@ -146,74 +157,109 @@
   box-shadow: 0 12px 30px rgba(25, 44, 86, 0.10);
 }
 
-/* BIỂU ĐỒ RỘNG */
+/* Thẻ biểu đồ rộng */
 
 .abc-gallery__card--wide {
   grid-column: span 2;
 }
 
-/* KHU VỰC ẢNH */
+/* ==========================================
+   7. KHU VỰC HÌNH ẢNH
+========================================== */
 
-.abc-gallery__zoom {
+.abc-gallery__open {
   display: block;
   width: 100%;
-  padding: 16px;
-  background: #f7f9fd;
+  padding: 0;
   border: 0;
+  background: transparent;
   cursor: zoom-in;
+  text-align: left;
+  color: inherit;
+  font: inherit;
 }
 
-.abc-gallery__zoom img {
+.abc-gallery__open > img {
   display: block;
   width: 100%;
   height: 260px;
+  padding: 16px;
+  background: #f7f9fd;
   object-fit: contain;
+  transition: transform 0.25s ease;
 }
 
-.abc-gallery__card--wide .abc-gallery__zoom img {
+.abc-gallery__card:hover .abc-gallery__open > img {
+  transform: scale(1.015);
+}
+
+.abc-gallery__card--wide .abc-gallery__open > img {
   height: 390px;
 }
 
-/* THÔNG TIN BIỂU ĐỒ */
+.abc-gallery__open:focus-visible {
+  outline: 3px solid #a8b4ff;
+  outline-offset: -3px;
+}
 
-.abc-gallery__info {
+/* ==========================================
+   8. THÔNG TIN BIỂU ĐỒ
+========================================== */
+
+.abc-gallery__content {
   padding: 18px 22px 22px;
 }
 
-.abc-gallery__meta {
+.abc-gallery__category {
+  display: inline-block;
+  margin-bottom: 9px;
+  color: #5263d9;
   font-size: 12px;
   font-weight: 750;
-  color: #5263d9;
-  margin-bottom: 9px;
 }
 
-.abc-gallery__info h3 {
+.abc-gallery__content h3 {
   margin: 0 0 8px;
   color: #1c2a48;
   font-size: 18px;
+  font-weight: 750;
   line-height: 1.4;
 }
 
-.abc-gallery__info p {
-  margin: 0;
-  font-size: 14px;
+.abc-gallery__content p {
+  margin: 0 0 10px;
   color: #748098;
+  font-size: 14px;
   line-height: 1.65;
 }
 
-/* THÔNG BÁO LỖI ẢNH */
+.abc-gallery__meta {
+  display: block;
+  margin-top: 12px;
+  color: #9aa5ba;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+/* ==========================================
+   9. THÔNG BÁO LỖI HÌNH ẢNH
+========================================== */
 
 .abc-gallery__error {
   padding: 24px;
   color: #c0392b;
   font-size: 14px;
+  line-height: 1.6;
 }
 
-/* CỬA SỔ PHÓNG TO */
+/* ==========================================
+   10. CỬA SỔ PHÓNG TO
+========================================== */
 
 .abc-gallery__dialog {
   border: 0;
   border-radius: 18px;
+  width: max-content;
   max-width: min(1100px, 96vw);
   max-height: 94vh;
   padding: 18px;
@@ -239,6 +285,7 @@
   margin-top: 14px;
   font-size: 15px;
   font-weight: 650;
+  line-height: 1.6;
 }
 
 .abc-gallery__close {
@@ -253,9 +300,21 @@
   font-size: 14px;
   font-weight: 700;
   cursor: pointer;
+  transition: background 0.2s ease;
 }
 
-/* RESPONSIVE - TABLET */
+.abc-gallery__close:hover {
+  background: #dfe5f4;
+}
+
+.abc-gallery__close:focus-visible {
+  outline: 3px solid #a8b4ff;
+  outline-offset: 3px;
+}
+
+/* ==========================================
+   11. RESPONSIVE - TABLET
+========================================== */
 
 @media (max-width: 900px) {
 
@@ -263,17 +322,19 @@
     gap: 16px;
   }
 
-  .abc-gallery__zoom img {
+  .abc-gallery__open > img {
     height: 210px;
   }
 
-  .abc-gallery__card--wide .abc-gallery__zoom img {
+  .abc-gallery__card--wide .abc-gallery__open > img {
     height: 310px;
   }
 
 }
 
-/* RESPONSIVE - MOBILE */
+/* ==========================================
+   12. RESPONSIVE - MOBILE
+========================================== */
 
 @media (max-width: 650px) {
 
@@ -289,39 +350,70 @@
     font-size: 30px;
   }
 
-  .abc-gallery__collapse {
-    padding: 10px 16px;
-  }
-
   .abc-gallery__tabs {
     gap: 8px;
+    padding-bottom: 18px;
   }
 
-  .abc-gallery__filter {
+  .abc-gallery__tab {
     padding: 9px 13px;
     font-size: 12px;
   }
 
-  .abc-gallery__grid {
+  .abc-gallery__grid,
+  .abc-gallery__grid[hidden] {
     grid-template-columns: 1fr;
+    gap: 16px;
   }
 
   .abc-gallery__card--wide {
     grid-column: auto;
   }
 
-  .abc-gallery__zoom img,
-  .abc-gallery__card--wide .abc-gallery__zoom img {
+  .abc-gallery__open > img,
+  .abc-gallery__card--wide .abc-gallery__open > img {
     height: auto;
     max-height: 300px;
   }
 
-  .abc-gallery__info {
+  .abc-gallery__content {
     padding: 15px 17px 19px;
   }
 
-  .abc-gallery__info h3 {
+  .abc-gallery__content h3 {
     font-size: 16px;
+  }
+
+  .abc-gallery__content p {
+    font-size: 13px;
+  }
+
+  .abc-gallery__dialog {
+    padding: 12px;
+    max-width: 96vw;
+  }
+
+  .abc-gallery__dialog figcaption {
+    font-size: 13px;
+  }
+
+}
+
+/* ==========================================
+   13. GIẢM HIỆU ỨNG CHUYỂN ĐỘNG
+========================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .abc-gallery__card,
+  .abc-gallery__open > img,
+  .abc-gallery__tab {
+    transition: none;
+  }
+
+  .abc-gallery__card:hover,
+  .abc-gallery__card:hover .abc-gallery__open > img {
+    transform: none;
   }
 
 }
