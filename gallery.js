@@ -1,22 +1,10 @@
 
-/* =====================================================
+/* ============================================
    GÓC NHÌN DỮ LIỆU - ABC-27
-   THƯ VIỆN BIỂU ĐỒ TỪ BÁO CÁO PYTHON NÂNG CAO
+   DASHBOARD GALLERY - MẪU 2
+============================================ */
 
-   Tác giả: Huỳnh Thanh Phúc
-   Năm: 2026
-
-   Cấu trúc ảnh:
-   assets/chart-1.png
-   assets/chart-2.png
-   ...
-   assets/chart-12.png
-===================================================== */
-
-
-/* =====================================================
-   1. DANH SÁCH BIỂU ĐỒ
-===================================================== */
+// DANH SÁCH 12 BIỂU ĐỒ GỐC
 
 const abcFigures = [
   {
@@ -24,8 +12,7 @@ const abcFigures = [
     page: 5,
     category: "Tổng quan",
     title: "Hình 1 · Giá đóng cửa và dải High–Low",
-    description:
-      "Diễn biến giá đóng cửa và khoảng dao động trong ngày.",
+    description: "Diễn biến giá đóng cửa và khoảng dao động trong ngày.",
     wide: true
   },
   {
@@ -33,26 +20,23 @@ const abcFigures = [
     page: 9,
     category: "Mô phỏng",
     title: "Hình 2a · Nến 37",
-    description:
-      "Khung hình mô phỏng tại nến 37, ngày 181–185.",
-    wide: true
+    description: "Khung hình mô phỏng tại nến 37, ngày 181–185.",
+    wide: false
   },
   {
     image: "chart-3.png",
     page: 9,
     category: "Mô phỏng",
     title: "Hình 2b · Nến 73",
-    description:
-      "Khung hình mô phỏng cuối năm tại nến 73, ngày 361–365.",
-    wide: true
+    description: "Khung hình mô phỏng tại nến 73, ngày 361–365.",
+    wide: false
   },
   {
     image: "chart-4.png",
     page: 11,
     category: "Theo tháng",
     title: "Hình 3 · Giá trung bình theo tháng",
-    description:
-      "Biểu đồ cột và thanh sai số ± một độ lệch chuẩn.",
+    description: "Giá trung bình và độ lệch chuẩn theo tháng.",
     wide: false
   },
   {
@@ -60,8 +44,7 @@ const abcFigures = [
     page: 11,
     category: "Theo tháng",
     title: "Hình 4 · Boxplot theo tháng",
-    description:
-      "Phân bố giá theo từng tháng.",
+    description: "Phân bố giá theo từng tháng.",
     wide: false
   },
   {
@@ -69,17 +52,15 @@ const abcFigures = [
     page: 12,
     category: "Theo tháng",
     title: "Hình 5 · Biên độ theo tháng",
-    description:
-      "Chênh lệch Max − Min của từng tháng.",
+    description: "Chênh lệch Max − Min theo tháng.",
     wide: false
   },
   {
     image: "chart-7.png",
     page: 13,
     category: "Theo quý",
-    title: "Hình 6 · So sánh thống kê theo quý",
-    description:
-      "Trung bình, độ lệch chuẩn và hệ số biến thiên.",
+    title: "Hình 6 · Thống kê theo quý",
+    description: "So sánh các chỉ số thống kê theo quý.",
     wide: true
   },
   {
@@ -87,17 +68,15 @@ const abcFigures = [
     page: 14,
     category: "Theo quý",
     title: "Hình 7 · Boxplot theo quý",
-    description:
-      "Phân bố giá theo bốn quý.",
+    description: "Phân bố giá theo bốn quý.",
     wide: false
   },
   {
     image: "chart-9.png",
     page: 16,
     category: "Bất thường",
-    title: "Hình 8 · Đóng cửa chạm trần/sàn",
-    description:
-      "Số ngày đóng cửa chạm trần hoặc sàn theo tháng.",
+    title: "Hình 8 · Giá chạm trần/sàn",
+    description: "Số ngày đóng cửa chạm trần hoặc sàn.",
     wide: false
   },
   {
@@ -105,8 +84,7 @@ const abcFigures = [
     page: 17,
     category: "Phân bố",
     title: "Hình 9 · Histogram hai nửa năm",
-    description:
-      "So sánh phân bố giá Q1–Q2 và Q3–Q4.",
+    description: "So sánh phân bố giá giữa hai nửa năm.",
     wide: true
   },
   {
@@ -114,8 +92,7 @@ const abcFigures = [
     page: 18,
     category: "Xu hướng",
     title: "Hình 10 · Xu hướng giá cả năm",
-    description:
-      "Xu hướng giá và vị trí giá thấp nhất.",
+    description: "Diễn biến xu hướng giá trong năm.",
     wide: true
   },
   {
@@ -123,120 +100,89 @@ const abcFigures = [
     page: 20,
     category: "Giải thích",
     title: "Hình 11 · Quy tắc màu sắc",
-    description:
-      "Minh họa nến và đường giá khi so sánh với tham chiếu.",
+    description: "Giải thích quy tắc màu trong biểu đồ.",
     wide: true
   }
 ];
 
-
-/* =====================================================
-   2. KHỞI TẠO THƯ VIỆN
-===================================================== */
+// KHỞI TẠO THƯ VIỆN
 
 function initializeABCGallery() {
 
   const root = document.getElementById("abc-gallery");
 
-  if (!root) {
-    console.warn("ABC-27: Không tìm thấy #abc-gallery.");
+  if (!root || root.dataset.initialized === "true") {
     return;
   }
 
-  // Tránh khởi tạo nhiều lần
-  if (root.dataset.initialized === "true") {
-    return;
-  }
-
-  const grid = root.querySelector(".abc-gallery__grid");
   const tabs = root.querySelector(".abc-gallery__tabs");
+  const grid = root.querySelector(".abc-gallery__grid");
+  const count = root.querySelector("#galleryCount");
+  const collapseButton = root.querySelector("#galleryCollapse");
+
   const dialog = root.querySelector(".abc-gallery__dialog");
+  const bigImage = dialog?.querySelector("img");
+  const caption = dialog?.querySelector("figcaption");
+  const closeButton = dialog?.querySelector(".abc-gallery__close");
 
-  if (!grid || !tabs || !dialog) {
-    console.error("ABC-27: Thiếu cấu trúc HTML thư viện.");
-    return;
-  }
-
-  const bigImage = dialog.querySelector("img");
-  const caption = dialog.querySelector("figcaption");
-  const closeButton = dialog.querySelector(
-    ".abc-gallery__close"
-  );
-
-  if (!bigImage || !caption || !closeButton) {
-    console.error("ABC-27: Thiếu thành phần phóng to.");
+  if (
+    !tabs || !grid || !count || !collapseButton ||
+    !dialog || !bigImage || !caption || !closeButton
+  ) {
+    console.error("Thiếu thành phần của thư viện biểu đồ.");
     return;
   }
 
   root.dataset.initialized = "true";
 
-  grid.replaceChildren();
-  tabs.replaceChildren();
-
-
-  /* =================================================
-     3. XÁC ĐỊNH ĐƯỜNG DẪN ẢNH
-
-     Tương thích GitHub Pages:
-     /Goc-Nhin-Du-Lieu/assets/chart-1.png
-  ================================================= */
-
-  const baseURL = new URL("./", window.location.href);
+  const baseURL = new URL("./", document.baseURI);
 
   function getImageURL(filename) {
-    return new URL(
-      "assets/" + filename,
-      baseURL
-    ).href;
+    return new URL("assets/" + filename, baseURL).href;
   }
 
-
-  /* =================================================
-     4. TẠO BỘ LỌC
-  ================================================= */
+  let activeFilter = "Tất cả";
+  let isCollapsed = false;
 
   const filters = [
     "Tất cả",
-    ...new Set(
-      abcFigures.map(item => item.category)
-    )
+    "Tổng quan",
+    "Mô phỏng",
+    "Theo tháng",
+    "Theo quý",
+    "Bất thường",
+    "Phân bố",
+    "Xu hướng",
+    "Giải thích"
   ];
 
-  filters.forEach(label => {
+  // TẠO NÚT LỌC
+
+  filters.forEach(filter => {
 
     const button = document.createElement("button");
 
     button.type = "button";
-    button.className = "abc-gallery__tab";
-    button.textContent = label;
-
+    button.className = "abc-gallery__filter";
+    button.textContent = filter;
+    button.dataset.filter = filter;
     button.setAttribute(
       "aria-pressed",
-      String(label === "Tất cả")
+      String(filter === activeFilter)
     );
 
     button.addEventListener("click", () => {
 
-      tabs.querySelectorAll(
-        ".abc-gallery__tab"
-      ).forEach(btn => {
+      activeFilter = filter;
 
-        btn.setAttribute(
-          "aria-pressed",
-          String(btn === button)
-        );
+      // Tự mở lại khi chọn nhóm
+      if (isCollapsed) {
+        isCollapsed = false;
+        updateCollapse();
+      }
 
-      });
-
-      grid.querySelectorAll(
-        ".abc-gallery__card"
-      ).forEach(card => {
-
-        card.hidden =
-          label !== "Tất cả" &&
-          card.dataset.category !== label;
-
-      });
+      updateFilters();
+      renderGallery();
 
     });
 
@@ -244,23 +190,37 @@ function initializeABCGallery() {
 
   });
 
+  function updateFilters() {
 
-  /* =================================================
-     5. TẠO 12 THẺ BIỂU ĐỒ
-  ================================================= */
+    tabs.querySelectorAll(".abc-gallery__filter").forEach(
+      button => {
 
-  abcFigures.forEach((figureData, index) => {
+        const selected =
+          button.dataset.filter === activeFilter;
 
-    const imageURL = getImageURL(figureData.image);
+        button.classList.toggle("active", selected);
+
+        button.setAttribute(
+          "aria-pressed",
+          String(selected)
+        );
+
+      }
+    );
+
+  }
+
+  // TẠO THẺ BIỂU ĐỒ
+
+  function createFigureCard(item) {
 
     const figure = document.createElement("figure");
 
     figure.className = "abc-gallery__card";
-    figure.dataset.category = figureData.category;
-    figure.dataset.wide = String(figureData.wide);
 
-
-    /* NÚT PHÓNG TO */
+    if (item.wide) {
+      figure.classList.add("abc-gallery__card--wide");
+    }
 
     const zoomButton = document.createElement("button");
 
@@ -269,94 +229,49 @@ function initializeABCGallery() {
 
     zoomButton.setAttribute(
       "aria-label",
-      "Phóng to " + figureData.title
+      "Phóng to " + item.title
     );
 
+    const image = document.createElement("img");
 
-    /* HÌNH ẢNH */
+    image.src = getImageURL(item.image);
+    image.alt = item.title;
+    image.loading = "lazy";
+    image.decoding = "async";
 
-    const img = document.createElement("img");
+    image.addEventListener("error", () => {
 
-    img.alt = figureData.title;
-    img.loading = "lazy";
-    img.decoding = "async";
+      image.style.display = "none";
 
-    // Giúp hình hiển thị đầy đủ
-    img.style.display = "block";
-    img.style.width = "100%";
-    img.style.height = "auto";
-    img.style.objectFit = "contain";
+      const error = document.createElement("p");
 
-    img.addEventListener("load", () => {
+      error.className = "abc-gallery__error";
+      error.textContent =
+        "Không tải được hình: " + item.image;
 
-      console.log(
-        `ABC-27: Đã tải hình ${index + 1}`,
-        imageURL
-      );
+      zoomButton.appendChild(error);
 
     });
 
+    zoomButton.appendChild(image);
 
-    /* THÔNG BÁO NẾU ẢNH BỊ LỖI */
-
-    img.addEventListener("error", () => {
-
-      console.error(
-        `ABC-27: Không tải được hình ${index + 1}`,
-        imageURL
-      );
-
-      img.style.display = "none";
-
-      const errorBox = document.createElement("div");
-
-      errorBox.style.padding = "28px";
-      errorBox.style.textAlign = "center";
-      errorBox.style.color = "#c0392b";
-
-      const message = document.createElement("p");
-
-      message.textContent =
-        "Không tải được ảnh: " + figureData.image;
-
-      const link = document.createElement("a");
-
-      link.href = imageURL;
-      link.target = "_blank";
-      link.rel = "noopener noreferrer";
-      link.textContent = "Mở ảnh trực tiếp ↗";
-
-      errorBox.append(message, link);
-      zoomButton.appendChild(errorBox);
-
-    });
-
-    // Gán src sau khi đã đăng ký sự kiện
-    img.src = imageURL;
-
-    zoomButton.appendChild(img);
-
-
-    /* PHÓNG TO */
+    // PHÓNG TO KHI NHẤN VÀO HÌNH
 
     zoomButton.addEventListener("click", () => {
 
-      if (!img.complete || img.naturalWidth === 0) {
+      if (!image.complete || image.naturalWidth === 0) {
         return;
       }
 
-      bigImage.src = imageURL;
-      bigImage.alt = figureData.title;
-      caption.textContent = figureData.title;
+      bigImage.src = image.src;
+      bigImage.alt = item.title;
+      caption.textContent = item.title;
 
       if (!dialog.open) {
         dialog.showModal();
       }
 
     });
-
-
-    /* THÔNG TIN BIỂU ĐỒ */
 
     const info = document.createElement("figcaption");
 
@@ -365,33 +280,75 @@ function initializeABCGallery() {
     const meta = document.createElement("div");
 
     meta.className = "abc-gallery__meta";
-
     meta.textContent =
-      figureData.category +
-      " · Trang " +
-      figureData.page +
-      " của PDF";
+      item.category + " · Trang " + item.page;
 
     const title = document.createElement("h3");
 
-    title.textContent = figureData.title;
+    title.textContent = item.title;
 
     const description = document.createElement("p");
 
-    description.textContent = figureData.description;
+    description.textContent = item.description;
 
     info.append(meta, title, description);
 
     figure.append(zoomButton, info);
 
-    grid.appendChild(figure);
+    return figure;
+
+  }
+
+  // HIỂN THỊ THEO BỘ LỌC
+
+  function renderGallery() {
+
+    const visibleFigures = abcFigures.filter(item => {
+      return activeFilter === "Tất cả" ||
+             item.category === activeFilter;
+    });
+
+    grid.replaceChildren();
+
+    visibleFigures.forEach(item => {
+      grid.appendChild(createFigureCard(item));
+    });
+
+    count.textContent =
+      "Hiển thị " +
+      visibleFigures.length +
+      " / " +
+      abcFigures.length +
+      " biểu đồ";
+
+  }
+
+  // THU GỌN / MỞ RỘNG
+
+  function updateCollapse() {
+
+    grid.hidden = isCollapsed;
+
+    collapseButton.textContent = isCollapsed
+      ? "+ Mở rộng"
+      : "− Thu gọn";
+
+    collapseButton.setAttribute(
+      "aria-expanded",
+      String(!isCollapsed)
+    );
+
+  }
+
+  collapseButton.addEventListener("click", () => {
+
+    isCollapsed = !isCollapsed;
+
+    updateCollapse();
 
   });
 
-
-  /* =================================================
-     6. ĐÓNG CỬA SỔ PHÓNG TO
-  ================================================= */
+  // ĐÓNG CỬA SỔ PHÓNG TO
 
   closeButton.addEventListener("click", () => {
     dialog.close();
@@ -405,21 +362,21 @@ function initializeABCGallery() {
 
   });
 
+  // CHẠY LẦN ĐẦU
 
-  /* =================================================
-     7. HOÀN TẤT
-  ================================================= */
+  updateFilters();
+  renderGallery();
+  updateCollapse();
 
   console.log(
-    `ABC-27: Đã khởi tạo ${abcFigures.length} biểu đồ.`
+    "ABC-27 Dashboard Gallery: " +
+    abcFigures.length +
+    " biểu đồ đã được tải."
   );
 
 }
 
-
-/* =====================================================
-   8. CHẠY SAU KHI HTML TẢI XONG
-===================================================== */
+// CHẠY SAU KHI HTML SẴN SÀNG
 
 if (document.readyState === "loading") {
 
