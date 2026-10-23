@@ -986,3 +986,11 @@ html { scroll-padding-top: 30px; }
 @media (max-width: 380px) {
   .academic-ending-stats { grid-template-columns: 1fr; }
 }
+
+.abc-chart-hint {
+  text-align: center;
+  color: #8c9db6;
+  font-size: 13px;
+  margin: 14px 0 0;
+  line-height: 1.6;
+}
